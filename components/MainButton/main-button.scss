@@ -1,0 +1,15 @@
+@import '../../assets/styles/variables.scss';
+@import '../../assets/styles/mixins.scss';
+
+.button {
+  padding: 21px 20px 15px;
+  font-family: 'Kalam';
+  font-size: toRem(32);
+  font-weight: 700;
+  line-height: 51px;
+  letter-spacing: -0.947px;
+  border: none;
+  background-color: $color-supernova;
+  border-radius: 999px;
+  cursor: pointer;
+}

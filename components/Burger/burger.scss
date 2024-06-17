@@ -1,0 +1,48 @@
+@import '../../assets/styles/variables.scss';
+@import '../../assets/styles/mixins.scss';
+
+.burger {
+  &__button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 69px;
+    height: 58px;
+    background-color: $color-supernova;
+    border: none;
+    z-index: 2;
+    cursor: pointer;
+
+    &::after {
+      @include pseudo(49px, 3px);
+      top: 14px;
+      box-shadow: 0 14px 0 0 $color-default-black;
+      background-color: $color-default-black;
+      transition: all $trans-default;
+    }
+
+    &::before {
+      @include pseudo(49px, 3px);
+      bottom: 14px;
+      background-color: $color-default-black;
+      transition: all $trans-default;
+    }
+  }
+
+  &--open {
+    .burger__button {
+      z-index: 2;
+      &::after {
+        top: 25px;
+        transform: rotate(45deg);
+        box-shadow: none;
+      }
+  
+      &::before {
+        bottom: 29px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

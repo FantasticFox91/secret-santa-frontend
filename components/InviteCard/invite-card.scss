@@ -1,0 +1,82 @@
+@import '../../assets/styles/variables.scss';
+@import '../../assets/styles/mixins.scss';
+
+.invite-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 24px 24px 24px 77px;
+  background-color: $color-default-white;
+
+  &__avatar {
+    position: absolute;
+    left: -20px;
+  }
+
+  &__label {
+    position: absolute;
+    left: -90px;
+    margin: 0;
+    font-family: $ff-thirdly;
+    font-size: toRem(32);
+    line-height: 50px;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    color: $color-default-black;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: toRem(32);
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.96px;
+  }
+
+  &__email {
+    margin: 0;
+    line-height: 32px;
+    letter-spacing: -0.48px;
+  }
+
+  &__delete {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: $color-transparent;
+    border: none;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      @include pseudo(14px, 2px);
+      background-color: $color-bombay;
+      border-radius: 20px;
+      transition: background-color $trans-default;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+
+    &:hover::before,
+    &:hover::after {
+      background-color: $color-default-black;
+    }
+  }
+}

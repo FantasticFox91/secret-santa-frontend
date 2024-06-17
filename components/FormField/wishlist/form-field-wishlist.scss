@@ -1,0 +1,101 @@
+@import '../../../assets/styles/mixins.scss';
+@import '../../../assets/styles/variables.scss';
+
+.form-field-wishlist {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 64px;
+  gap: 8px 20px;
+
+  &::before {
+    @include pseudo(24px, 27px);
+    left: 38px;
+    bottom: 26px;
+    border-left: 4px solid $color-spanish-green;
+    border-bottom: 4px solid $color-spanish-green;
+  }
+
+  &__name {
+    position: relative;
+    counter-increment: wishlist;
+
+    &::before {
+      @include pseudo(20px, 32px);
+      top: calc(50% - 21px);
+      left: 30px;
+      content: counter(wishlist);
+      font-family: $ff-thirdly;
+      font-size: 32px;
+      letter-spacing: -0.03rem;
+      line-height: normal;
+      font-weight: 700;
+    }
+
+    .form-field-wishlist__input {
+      padding-left: 60px;
+      font-family: $ff-main;
+    }
+  }
+
+  &__link {
+    position: relative;
+    margin-left: 80px;
+
+    &::before {
+      @include pseudo(20px, 18px);
+      top: calc(50% - 12px);
+      left: 24px;
+      content: "url";
+      font-family: $ff-thirdly;
+      font-size: 18px;
+      letter-spacing: -0.03rem;
+      line-height: normal;
+      font-weight: 700;
+    }
+
+    .form-field-wishlist__input {
+      padding: 15px;
+      padding-left: 65px;
+      font-family: $ff-main;
+      font-size: toRem(18);
+      line-height: normal;
+    }
+  }
+
+  &__button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin-top: 16px;
+    border-radius: 50%;
+    border: 2px solid $color-default-white;
+    background-color: $color-default-black;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    cursor: pointer;
+
+    &::before {
+      @include pseudo(2px, 16px);
+      border-radius: 12px;
+      background-color: $color-default-white;
+    }
+
+    &::after {
+      @include pseudo(16px, 2px);
+      border-radius: 12px;
+      background-color: $color-default-white;
+    }
+
+    &--add {
+      background-color: $color-spanish-green;
+    }
+
+    &--remove {
+      background-color: $color-decline;
+      transform: rotate(45deg);
+    }
+  }
+}

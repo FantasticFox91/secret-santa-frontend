@@ -1,0 +1,29 @@
+@import '../../assets/styles//variables.scss';
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  padding: 80px 0 50px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: $color-scotch-mist;
+  background-color: $color-acadia;
+  z-index: -1;
+
+  &__logo {
+    margin-bottom: 60px;
+  }
+
+  &__text {
+    margin: 0;
+    margin-bottom: 16px;
+  }
+
+  &__link {
+    text-decoration: underline;
+    color: $color-scotch-mist;
+  }
+}

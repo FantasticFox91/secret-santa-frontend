@@ -1,0 +1,188 @@
+@import '../../assets/styles/variables.scss';
+@import '../../assets/styles/mixins.scss';
+
+.avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  background-color: $color-default-white;
+
+  &::before {
+    @include pseudo(24px, 24px);
+    right: 0;
+    bottom: 0;
+  }
+
+  &__heading {
+    margin: 0;
+    font-size: toRem(14);
+    line-height: toRem(26);
+    letter-spacing: 0.28px;
+  }
+
+  &__loginas {
+    margin: 0;
+    font-size: toRem(18);
+    font-weight: 700;
+    line-height: toRem(26);
+    letter-spacing: 0.36px;
+    color: $color-default-black;
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + 22px);
+    min-width: 193px;
+    padding: 22px 18px 22px 15px;
+    background-color: $color-default-white;
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: -8px;
+      left: 30px;
+      width: 24px;
+      height: 24px;
+      transform: rotate(45deg);
+      background-color: $color-default-white;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    gap: 6px;
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 44px;
+    font-family: $ff-secondary;
+    font-size: toRem(30);
+    line-height: normal;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+
+    &::before {
+      @include pseudo(32px, 32px);
+      left: 0;
+    }
+
+    &--account::before {
+      background: url('/assets/svg/account.svg');
+    }
+
+    &--event::before {
+      background: url('/assets/svg/event.svg');
+    }
+
+    &--logout::before {
+      background: url('/assets/svg/logout.svg');
+    }
+  }
+
+  &--header {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    padding: 2px;
+    padding-left: 36px;
+    width: auto;
+    border-radius: 0;
+    background-color: transparent;
+
+    &::before {
+      @include pseudo(24px, 24px);
+      top: calc(50% - 12px);
+      left: 0;
+      background: url('/assets/svg/arrow-down.svg');
+      transition: transform 0.3s ease;
+    }
+
+    .avatar__circle {
+      width: 60px;
+      height: 60px;
+      border: 2px solid $color-default-white;
+      border-radius: 50%;
+    }
+
+    .avatar__image {
+      width: 60px;
+      height: 60px;
+      border: 2px solid $color-default-white;
+      border-radius: 50%;
+    }
+
+    .avatar__login {
+      border: none;
+      background-color: transparent;
+      text-align-last: left;
+      cursor: pointer;
+    }
+
+    &.avatar--open::before {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--available::before {
+    background: url('/assets/svg/available.svg') no-repeat 50% 50%;
+  }
+
+  &--unavailable::before {
+    background: url('/assets/svg/unavailable.svg') no-repeat 50% 50%;
+  }
+
+  &--unknown::before {
+    background: url('/assets/svg/unknown.svg') no-repeat 50% 50%;
+  }
+
+  &--santa::after {
+    @include pseudo(67px, 56px);
+    top: -23px;
+    right: -23px;
+    background: url('/assets/images/santa-hat.png') no-repeat 50% 50%;
+  }
+}
+
+.avatar__image {
+  border-radius: 50%;
+}
+
+.avatar__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: $color-silver-tree;
+  border-radius: 50%;
+}
+
+.avatar__name {
+  font-size: toRem(20);
+  font-weight: 700;
+  color: $color-default-white;
+}
+
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}

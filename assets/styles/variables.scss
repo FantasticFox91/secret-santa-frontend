@@ -1,0 +1,74 @@
+// 
+:root {
+  counter-reset: wishlist;
+}
+
+// Colors
+// ---------------------------------
+
+// Default
+
+$color-transparent:                 rgba(255, 255, 255, 0);
+$color-default-white:               #ffffff;
+$color-default-black:               #000000;
+
+// Project palette
+// для нейминга цветов используем https://www.htmlcsscolor.com/hex/334482
+
+$color-silver-tree:                 #70bd91;
+$color-acadia:                      #392f2d;
+$color-bombay:                      #aeaeae;
+$color-orange-red:                  #fd4802;
+$color-fire-engine-red:             #c52425;
+$color-pastel-magenta:              #ff9dbf;
+$color-supernova:                   #fac900;
+$color-spanish-green:               #008a52;
+$color-scotch-mist:                 #efe9cb;
+$color-nile-blue:                   #243853;
+$color-black-pearl:                 #071126;
+$color-turquoise-green:             #a0ccb7;
+$color-padua:                       #b1e3cc;
+$color-silver-tree-2:               #70BD91;
+$color-decline:                     #ff4700;
+$color-silver-tree-dark:            #0a5d2c;
+
+
+// Gradient
+
+
+// Shadows
+
+
+
+// Typography
+// ---------------------------------
+
+// переменная используемая в html для подключения скейлинга
+$fz-default:                        16px;
+$lh-default:                        24px;
+$fw-default:                        400;
+
+// у некоторых шрифтов в ios возникают проблемы с символом рубля
+// https://www.artlebedev.ru/kovodstvo/sections/159/#13
+$ff-rouble:                         'Rouble', 'Arial', sans-serif;
+$ff-main:                           'Inter', sans-serif;
+$ff-secondary:                      'Bebas Neue', sans-serif;
+$ff-thirdly:                        'Kalam', cursive;
+
+// Animation
+// ---------------------------------
+
+$tf-default:                        ease;
+$trans-default:                     0.3s $tf-default;
+
+// если требуется изинг отличный от $tf-default, то переменную называем не цифрой
+$trans-modal:                       0.6s cubic-bezier(0.55, 0, 0.1, 1);
+
+$trans-600:                         0.6s $tf-default;
+
+// Viewports
+// ---------------------------------
+
+$vp-375:                            375px;
+$vp-748:                            748px;
+$vp-1280:                           1280px;

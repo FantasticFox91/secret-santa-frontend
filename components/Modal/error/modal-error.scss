@@ -1,0 +1,8 @@
+@import '../../../assets/styles/variables.scss';
+
+.modal-error {
+  .modal__content {
+    background-color: $color-supernova;
+    color: $color-default-black;
+  }
+}

@@ -1,0 +1,9 @@
+.invitation-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 110px;
+  gap: 30px 70px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}

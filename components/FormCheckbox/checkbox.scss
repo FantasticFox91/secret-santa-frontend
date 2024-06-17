@@ -1,0 +1,33 @@
+@import '../../assets/styles/variables.scss';
+@import '../../assets/styles/mixins.scss';
+
+.checkbox {
+  &__label {
+    position: relative;
+    display: flex;
+    padding-left: 56px;
+    font-family: "Kalam";
+    font-size: toRem(32);
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.947px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &::before {
+      @include pseudo(40px, 40px);
+      left: 0;
+      background-color: $color-default-white;
+    }
+
+    &::after {
+      @include pseudo(32px, 32px);
+      left: 4px;
+      top: calc(50% - 22px);
+    }
+  }
+
+  &__input:checked + .checkbox__label::after {
+    background: url('../../assets/svg/checkmark.svg');
+  }
+}

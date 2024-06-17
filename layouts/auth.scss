@@ -1,0 +1,17 @@
+@import '../assets/styles/variables.scss';
+
+.auth {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 400px;
+  padding: 50px 0;
+  align-items: center;
+  justify-content: center;
+  background: $color-silver-tree url('../assets/svg/bg__auth.svg') no-repeat 50% 0;
+
+  &__icon {
+    margin-bottom: 60px;
+  }
+}

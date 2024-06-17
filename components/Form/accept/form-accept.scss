@@ -1,0 +1,22 @@
+@import '@/assets/styles/mixins.scss';
+
+.form-accept {
+  position: relative;
+  margin-bottom: -25px;
+  
+  &::before {
+    @include pseudo(191px, 60px);
+    content: 'awesome';
+    left: calc(50% - 95px);
+    top: -44px;
+    font-family: "Kalam";
+    text-align: center;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #ffffff;
+    letter-spacing: -0.947px;
+    text-transform: uppercase;
+  }
+}

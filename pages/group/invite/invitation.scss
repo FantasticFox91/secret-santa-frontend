@@ -1,0 +1,33 @@
+@import '../../../assets/styles/variables.scss';
+@import '../../../assets/styles/mixins.scss';
+
+.invitation {
+  &__date {
+    margin: 0;
+    margin-bottom: 12px;
+    font-family: $ff-thirdly;
+    font-size: toRem(32);
+    font-weight: 700;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    color: $color-default-white;
+    line-height: 28px;
+    letter-spacing: -0.947px;
+    color: $color-default-white;
+    text-transform: uppercase;
+  }
+
+  &__name {
+    margin: 0;
+    margin-bottom: 30px;
+    font-family: $ff-secondary;
+    font-size: toRem(117);
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    line-height: 90px;
+    letter-spacing: 2.338px;
+    color: $color-default-white;
+  }
+
+  &__form {
+    margin-bottom: 40px;
+  }
+}

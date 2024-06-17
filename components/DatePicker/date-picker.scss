@@ -1,0 +1,70 @@
+@import '../../assets/styles/mixins.scss';
+
+.date-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__date {
+    padding: 32px 55px 29px 28px;
+    font-size: toRem(27);
+    font-family: $ff-thirdly;
+    font-weight: 700;
+    line-height: normal;
+    border: 3px solid $color-transparent;
+    background-color: $color-default-white;
+  }
+
+  &__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  &__input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__label {
+    position: absolute;
+    left: 28px;
+    top: calc(50% - 10px);
+    font-family: $ff-thirdly;
+    font-size: toRem(27);
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -0.54px;
+    color: $color-spanish-green;
+    text-transform: uppercase;
+    transition: all $trans-default;
+  }
+
+  &__date:not(:placeholder-shown) ~ .date-picker__label {
+    font-size: toRem(18);
+    top: 5px;
+    left: 9px;
+  }
+
+  &__button {
+    position: absolute;
+    top: 42px;
+    right: 32px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: url('/assets/svg/calendar.svg');
+  }
+}

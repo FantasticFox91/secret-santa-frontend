@@ -1,0 +1,47 @@
+@import '../../../assets/styles/variables.scss';
+@import '../../../assets/styles/mixins.scss';
+
+.slide-panel-burger {
+  position: absolute;
+  top: -130px;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  height: calc(100vh + 130px);
+  width: 2000px;
+  padding: 300px 46px 46px;
+  background-color: $color-supernova;
+  transform: translateX(-78%);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__link {
+    padding: 0;
+    font-family: $ff-secondary;
+    font-size: toRem(78);
+    line-height: 60px;
+    letter-spacing: 1.559px;
+    background-color: $color-transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+
+.slide-from-right-enter-active,
+.slide-from-right-leave-active {
+  transition: all $trans-600;
+}
+
+.slide-from-right-enter-from,
+.slide-from-right-leave-to {
+  transform: translateX(-150%);
+}

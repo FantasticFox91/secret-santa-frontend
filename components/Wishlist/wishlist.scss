@@ -1,0 +1,89 @@
+@import '../assets/styles/variables.scss';
+@import '../assets/styles/mixins.scss';
+
+.wishlist-side {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  flex-direction: column;
+  counter-reset: item;
+  gap: 30px;
+
+  &__top {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: toRem(32);
+    line-height: auto;
+    font-weight: 700;
+  }
+
+  &__button {
+    color: $color-default-white;
+    background-color: $color-silver-tree-dark;
+  }
+
+  &__item {
+    position: relative;
+    padding-bottom: 26px;
+    padding-left: 32px;
+    border-bottom: 3px solid $color-silver-tree;
+
+    &::before {
+      @include pseudo(20px, 32px);
+      top: -5px;
+      left: 0;
+      content: counter(item);
+      counter-increment: item;
+      font-family: $ff-thirdly;
+      font-size: 32px;
+      letter-spacing: -0.03rem;
+      line-height: normal;
+      font-weight: 700;
+    }
+  }
+
+  &__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid $color-silver-tree;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 9px 18px 22px;
+    gap: 16px;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: toRem(16);
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: toRem(27);
+    line-height: 27px;
+  }
+
+  &__info {
+    margin: 0;
+    font-size: toRem(14);
+    line-height: 20px;
+  }
+
+  &__image {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+}

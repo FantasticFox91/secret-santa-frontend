@@ -1,0 +1,8 @@
+@import '../../../assets/styles/variables.scss';
+
+.modal-success {
+  .modal__content {
+    background-color: $color-spanish-green;
+    color: $color-default-white;
+  }
+}
