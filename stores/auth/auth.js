@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (response.accessToken) {
       isAuth.value = true;
       accessToken.value = response.accessToken;
-      navigateTo({path: '/'})
+      navigateTo({path: '/dashboard'})
     }
   }
 
