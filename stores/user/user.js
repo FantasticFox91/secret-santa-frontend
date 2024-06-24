@@ -5,6 +5,7 @@ export const useUserStore = defineStore('user', () => {
   const { $api } = useNuxtApp();
   const myWishListShown = ref(false);
   const userEvent = ref(null);
+  const userSlidePanel = ref('editEvent');
 
   const createGroup = async (data) => {
     const authStore = useAuthStore();
@@ -15,6 +16,14 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const updateEvent = async (data) => {
+    const authStore = useAuthStore();
+    const token = authStore.accessToken;
+    const response = await $api.user.updateEvent(data, token);
+    getUserEvent();
+    hideMyWishList();
+  }
+
   const getUserEvent = async () => {
     const authStore = useAuthStore();
     const token = authStore.accessToken;
@@ -23,19 +32,28 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const showMyWishList = () => {
+    userSlidePanel.value = 'wishlist';
     myWishListShown.value = true;
   }
 
   const hideMyWishList = () => {
     myWishListShown.value = false;
   }
+
+  const showEditEvent = () => {
+    userSlidePanel.value = 'editevent';
+    myWishListShown.value = true;
+  }
   
   return { 
-    createGroup,
+    userEvent,
+    userSlidePanel,
     myWishListShown,
+    createGroup,
     showMyWishList,
     hideMyWishList,
     getUserEvent,
-    userEvent
+    showEditEvent,
+    updateEvent
   }
 })

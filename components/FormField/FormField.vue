@@ -33,7 +33,7 @@ const onInput = (e) => {
 
 <template>
   <div class="form-field">
-    <input class="form-field__input" :id="id"  :type="isHide ? type : 'text'" placeholder="" @input="onInput"/>
+    <input class="form-field__input" :id="id"  :type="isHide ? type : 'text'" :value="modelValue" placeholder="" @input="onInput"/>
     <label class="form-field__label" :for="id">{{ label }}</label>
     <button v-if="type === 'password'" class="form-field__password-button" type="button" @click="toggleHide">
       <span class="visually-hidden">Show/hide password</span>

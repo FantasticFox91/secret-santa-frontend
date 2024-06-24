@@ -1,10 +1,13 @@
 <script setup>
-const user = {
-  id: 1,
-  name: 'Dianne Russell',
-  email: 'drussell@example.com',
-  status: 'available',
-  avatarSrc: '/_nuxt/assets/images/avatar-01.png'
+const store = useUserStore();
+const { userSlidePanel } = storeToRefs(store);
+
+const wishlist = resolveComponent('Wishlist');
+const editEvent = resolveComponent('FormEdit');
+
+const components = {
+  'editevent': editEvent,
+  'wishlist': wishlist
 }
 </script>
 
@@ -19,12 +22,13 @@ const user = {
       <div class="default__column">
         <slot></slot>
         <SlidePanel>
-          <template #title>
+          <!-- <template #title>
             <h1 class="title">Wishlist</h1>
             <MainButton class="slide-panel__edit-button" type="button">edit</MainButton>
-          </template>
+          </template> -->
+          <component :is="components[userSlidePanel]" />
           <!-- <InviteCard type="wishlist" :user="user"/> -->
-          <Wishlist />
+          <!-- <Wishlist /> -->
         </SlidePanel>
       </div>
     </div>

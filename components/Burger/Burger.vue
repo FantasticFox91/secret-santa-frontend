@@ -7,7 +7,6 @@ const mainStore = useMainStore();
 const { burgerShown } = storeToRefs(mainStore);
 
 const toggleBurger = () => {
-  console.log(burgerShown.value)
   if (burgerShown.value) {
     mainStore.hideBurger();
   } else {

@@ -91,6 +91,28 @@ export default defineNuxtPlugin(() => {
           result = res?.data;
         } catch (e) {}
         return result;
+      },
+      async updateEvent(data, token) {
+        const response = await useFetch(
+          `http://localhost/api/events/${data.id}`,
+          {
+            method: 'PATCH',
+            body: data,
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            onResponseError({ request, response, options }) {
+              console.log('error', response._data);
+              return null;
+            },
+            async onResponse({ request, response, options }) {
+              return response._data;
+            },
+          }
+        );
+
+        return response; 
       }
     },
     link: {
