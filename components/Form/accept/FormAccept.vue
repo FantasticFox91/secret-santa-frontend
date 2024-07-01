@@ -2,8 +2,11 @@
 import MyForm from '../default/MyForm';
 import './form-accept.scss';
 
+const store = useUserStore();
+
 const formData = reactive({
   password: '',
+  email: '',
   avatar: null,
 })
 
@@ -16,7 +19,8 @@ const isButtonDisabled = computed(() => {
 })
 
 const onSubmit = () => {
-  console.log('okay')
+  formData.email = store.user.email;
+  store.acceptInvitation(formData);
 }
 </script>
 

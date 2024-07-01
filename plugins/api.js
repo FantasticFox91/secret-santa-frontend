@@ -143,6 +143,14 @@ export default defineNuxtPlugin(() => {
           result = res?.data;
         } catch (e) {}
         return result;
+      },
+      async acceptInvitation(data) {
+        let result = null;
+        try {
+          const res = await axi.post(`/events/accept`, data);
+          result = res?.data;
+        } catch (e) {}
+        return result;
       }
     },
     link: {
