@@ -54,6 +54,11 @@ export const useUserStore = defineStore('user', () => {
   const declineInvitation = async (email) => {
     await $api.user.declineInvitation(email)
   }
+
+  const acceptInvitation = async (data) => {
+    const response = await $api.user.acceptInvitation(data);
+    navigateTo({path: '/login'});
+  }
   
   return { 
     userEvent,
@@ -67,6 +72,7 @@ export const useUserStore = defineStore('user', () => {
     showEditEvent,
     updateEvent,
     getRSVPEvent,
-    declineInvitation
+    declineInvitation,
+    acceptInvitation
   }
 })

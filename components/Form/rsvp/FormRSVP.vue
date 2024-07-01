@@ -12,18 +12,22 @@ const userEvent = computed(() => {
 const router = useRouter();
 const route = useRoute();
 
+
 const onAccept = () => {
   router.push('/rsvp/accepted')
 }
 
 const onDecline = () => {
-  store.user = {
-    email: route.query.email,
-  };
   router.push('/rsvp/declined')
 }
 
 await useAsyncData('rsvpEvent', () => store.getRSVPEvent(props.eventId));
+
+onMounted(() => {
+  store.user = {
+    email: route.query.email,
+  };
+})
 </script>
 
 <template>
