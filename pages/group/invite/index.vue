@@ -18,7 +18,7 @@ const userEvent = computed(() => {
   <section class="invitation">
     <p class="invitation__date">{{ useDateUntil(userEvent.date) }}</p>
     <p class="invitation__name">{{ userEvent.name }}</p>
-    <FormInvitation class="invitation__form"/>
+    <FormInvitation :eventId="userEvent.id" class="invitation__form"/>
     <InvitationList />
     <Teleport to="body">
       <ModalDelete />

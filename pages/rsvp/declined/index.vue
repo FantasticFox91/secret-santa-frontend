@@ -2,6 +2,12 @@
 definePageMeta({
   layout: 'auth'
 })
+
+const store = useUserStore();
+
+onMounted(() => {
+  store.declineInvitation(store.user.email);
+})
 </script>
 
 <template>

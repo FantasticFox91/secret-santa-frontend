@@ -2,25 +2,34 @@
 import './form-rsvp.scss';
 import MyForm from '../default/MyForm';
 
-const formData = ref({
-  password: '',
+const store = useUserStore();
+const props = defineProps({
+  eventId: String,
 })
-
+const userEvent = computed(() => {
+  return store.userEvent;
+})
 const router = useRouter();
+const route = useRoute();
 
 const onAccept = () => {
   router.push('/rsvp/accepted')
 }
 
 const onDecline = () => {
+  store.user = {
+    email: route.query.email,
+  };
   router.push('/rsvp/declined')
 }
+
+await useAsyncData('rsvpEvent', () => store.getRSVPEvent(props.eventId));
 </script>
 
 <template>
   <MyForm class="form-rsvp">
-    <h2 class="form-rsvp__title">SMITH CHRISTMAS</h2>
-    <p class="form-rsvp__subtitle">december 23, 2023</p>
+    <h2 class="form-rsvp__title">{{ userEvent.name }}</h2>
+    <p class="form-rsvp__subtitle">{{ useDateFormat(userEvent.date) }}</p>
     <div class="form-rsvp__buttons">
       <button class="form-rsvp__button form-rsvp__button--decline" type="button" @click="onDecline">
         Regretfully <br />Decline

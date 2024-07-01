@@ -92,6 +92,14 @@ export default defineNuxtPlugin(() => {
         } catch (e) {}
         return result;
       },
+      async getEvent(eventId) {
+        let result = null;
+        try {
+          const res = await axi.get(`/events/${eventId}`);
+          result = res?.data;
+        } catch (e) {}
+        return result;
+      },
       async updateEvent(data, token) {
         const response = await useFetch(
           `http://localhost/api/events/${data.id}`,
@@ -113,6 +121,28 @@ export default defineNuxtPlugin(() => {
         );
 
         return response; 
+      },
+      async inviteUser(data, token) {
+        let result = null;
+        try {
+          const res = await axi.post(`http://localhost/api/auth/invite`, data,
+            {
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
+            });
+          result = res?.data;
+        } catch (e) {}
+        return result;
+      },
+      async declineInvitation(email) {
+        let result = null;
+        try {
+          const res = await axi.get(`/events/decline/${email}`);
+          result = res?.data;
+        } catch (e) {}
+        return result;
       }
     },
     link: {

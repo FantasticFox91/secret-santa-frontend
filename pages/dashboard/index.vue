@@ -1,4 +1,5 @@
 <script setup>
+import '../group/invite/invitation.scss';
 const store = useUserStore();
 
 const userEvent = computed(() => {
@@ -15,7 +16,7 @@ await useAsyncData('users', () => store.getUserEvent());
 <template>
   <section class="invitation">
     <div class="invitation__headings">
-      <div>
+      <div v-if="userEvent">
         <p class="invitation__date">{{ useDateUntil(userEvent.date) }}</p>
         <p class="invitation__name">{{ userEvent.name }}</p>
       </div>
