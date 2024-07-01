@@ -6,6 +6,7 @@ export const useUserStore = defineStore('user', () => {
   const myWishListShown = ref(false);
   const userEvent = ref(null);
   const userSlidePanel = ref('editEvent');
+  const user = ref(null);
 
   const createGroup = async (data) => {
     const authStore = useAuthStore();
@@ -31,6 +32,11 @@ export const useUserStore = defineStore('user', () => {
     userEvent.value = response.event[0];
   }
 
+  const getRSVPEvent = async (eventId) => {
+    const response = await $api.user.getEvent(eventId);
+    userEvent.value = response.event;
+  }
+
   const showMyWishList = () => {
     userSlidePanel.value = 'wishlist';
     myWishListShown.value = true;
@@ -44,16 +50,23 @@ export const useUserStore = defineStore('user', () => {
     userSlidePanel.value = 'editevent';
     myWishListShown.value = true;
   }
+
+  const declineInvitation = async (email) => {
+    await $api.user.declineInvitation(email)
+  }
   
   return { 
     userEvent,
     userSlidePanel,
     myWishListShown,
+    user,
     createGroup,
     showMyWishList,
     hideMyWishList,
     getUserEvent,
     showEditEvent,
-    updateEvent
+    updateEvent,
+    getRSVPEvent,
+    declineInvitation
   }
 })
