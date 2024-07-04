@@ -20,8 +20,5 @@ const userEvent = computed(() => {
     <p class="invitation__name">{{ userEvent.name }}</p>
     <FormInvitation :eventId="userEvent.id" class="invitation__form"/>
     <InvitationList />
-    <Teleport to="body">
-      <ModalDelete />
-    </Teleport>
   </section>
 </template>

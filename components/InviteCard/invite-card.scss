@@ -57,6 +57,7 @@
     background-color: $color-transparent;
     border: none;
     cursor: pointer;
+    z-index: 2;
 
     &::before,
     &::after {
@@ -78,5 +79,9 @@
     &:hover::after {
       background-color: $color-default-black;
     }
+  }
+
+  &--wishlist {
+    cursor: pointer;
   }
 }

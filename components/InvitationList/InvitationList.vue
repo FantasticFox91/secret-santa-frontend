@@ -1,17 +1,27 @@
 
-import type login from '~/server/api/login';
-
-import type login from '~/server/api/login';
 <script setup>
 import './invitation-list.scss';
-import { useMainStore } from '../../stores/main/main';
 
-const mainStore = useMainStore();
+defineProps({
+  wishlist: {
+    type: Boolean,
+    default: false,
+  }
+})
+
+const userStore = useUserStore();
+
+const onUserWishlistClick = (userId) => {
+  userStore.showUserWishList(userId, userStore.userEvent.id);
+}
 
 </script>
 
 <template>
-  <ul class="invitation-list">
-    <InviteCard v-for="user in mainStore.users" :user="user" :key="user.id" />
+  <ul v-if="wishlist" class="invitation-list">
+    <InviteCard class="invite-card--wishlist" v-for="user in userStore.userEvent.userStatus" :user="user" :key="user.user.id" @click="() => onUserWishlistClick(user.user.id)"/>
+  </ul>
+  <ul v-else class="invitation-list">
+    <InviteCard v-for="user in userStore.userEvent.userStatus" :user="user" :key="user.user.id"/>
   </ul>
 </template>
