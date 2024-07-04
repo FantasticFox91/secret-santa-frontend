@@ -32,6 +32,9 @@ const components = {
         </SlidePanel>
       </div>
     </div>
+    <Teleport to="body">
+      <ModalDelete />
+    </Teleport>
   </main>
 </template>
 

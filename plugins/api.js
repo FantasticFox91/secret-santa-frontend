@@ -151,6 +151,17 @@ export default defineNuxtPlugin(() => {
           result = res?.data;
         } catch (e) {}
         return result;
+      },
+      async getUserWishlist(userId, eventId) {
+        let result = null;
+        try {
+          const res = await axi.post(`/user/wishlist`, {
+            userId,
+            eventId
+          });
+          result = res?.data;
+        } catch (e) {}
+        return result;
       }
     },
     link: {

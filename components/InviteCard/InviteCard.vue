@@ -21,12 +21,12 @@ const onDeleteClick = (id) => {
 <template>
   <li class="invite-card">
     <p v-if="type === 'wishlist'" class="invite-card__label">for</p>
-    <Avatar class="invite-card__avatar" :name="user.name" :status="user.status" :imageSrc="user.avatarSrc"/>
+    <Avatar class="invite-card__avatar" :name="user.user.firstName" :status="user.status" :imageSrc="user.user.avatar"/>
     <div class="invite-card__info">
-      <p class="invite-card__name">{{ user.name }}</p>
-      <p class="invite-card__email">{{ user.email }}</p>
+      <p class="invite-card__name">{{ user.user.firstName }}</p>
+      <p class="invite-card__email">{{ user.user.email }}</p>
     </div>
-    <button class="invite-card__delete" v-if="user.status !== 'available'" @click="onDeleteClick(user.id)">
+    <button class="invite-card__delete" v-if="user.status !== 'ACCEPTED'" @click.stop="onDeleteClick(user.id)">
       <span class="visually-hidden">Delete invitation</span>
     </button>
   </li>

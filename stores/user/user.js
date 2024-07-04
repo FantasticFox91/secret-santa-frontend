@@ -3,10 +3,21 @@ import { useAuthStore } from '../auth/auth';
 
 export const useUserStore = defineStore('user', () => {
   const { $api } = useNuxtApp();
+  const authStore = useAuthStore();
   const myWishListShown = ref(false);
   const userEvent = ref(null);
   const userSlidePanel = ref('editEvent');
   const user = ref(null);
+  const wishlist = ref([
+    {
+      site: 'test.com',
+      title: 'test',
+      description: 'Test',
+      image: 'https://placehold.co/600x400',
+    }
+  ]);
+
+  const mainUser = computed(() => authStore.user);
 
   const createGroup = async (data) => {
     const authStore = useAuthStore();
@@ -39,6 +50,19 @@ export const useUserStore = defineStore('user', () => {
 
   const showMyWishList = () => {
     userSlidePanel.value = 'wishlist';
+    user.value = {user: mainUser.value};
+    myWishListShown.value = true;
+  }
+
+  const showUserWishList = async (userId, eventId) => {
+    const response = await $api.user.getUserWishlist(userId, eventId);
+    wishlist.value = response.wishList;
+
+    const userInfo = userEvent.value.userStatus.find((el) => el.userId === userId);
+
+    user.value = userInfo;
+
+    userSlidePanel.value = 'wishlist';
     myWishListShown.value = true;
   }
 
@@ -65,6 +89,7 @@ export const useUserStore = defineStore('user', () => {
     userSlidePanel,
     myWishListShown,
     user,
+    wishlist,
     createGroup,
     showMyWishList,
     hideMyWishList,
@@ -73,6 +98,7 @@ export const useUserStore = defineStore('user', () => {
     updateEvent,
     getRSVPEvent,
     declineInvitation,
-    acceptInvitation
+    acceptInvitation,
+    showUserWishList
   }
 })
