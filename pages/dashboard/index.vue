@@ -26,8 +26,8 @@ await useAsyncData('users', () => store.getUserEvent());
         <p class="invitation__name">{{ userEvent.name }}</p>
       </div>
       <MainButton class="edit-button" type="button" @click="onEditButtonClick">Edit</MainButton>
+      <InvitationList wishlist/>
     </div>
-    <InvitationList wishlist/>
   </section>
 </template>
 

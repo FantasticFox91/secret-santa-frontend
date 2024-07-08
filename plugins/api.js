@@ -175,6 +175,21 @@ export default defineNuxtPlugin(() => {
         }
         return result;
       },
+    },
+    wishlist: {
+      async addItems(items, eventId) {
+        let result = null;
+        try {
+          const res = await axi.post(`/wishlist/add`, {
+            items,
+            eventId
+          });
+          result = res?.data;
+        } catch (error) {
+          console.error('Error adding items to wishlist:', error);
+        }
+        return result;
+      },
     }
   }
 
