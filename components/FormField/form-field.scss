@@ -67,5 +67,11 @@
   .form-field__input {
     background-color: $color-orange-red;
     border-color: $color-fire-engine-red;
+
+    
+    &:disabled {
+      background-color: $color-bombay;
+      border-color: $color-bombay;
+    }
   }
 }
