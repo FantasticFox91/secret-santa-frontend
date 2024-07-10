@@ -9,16 +9,27 @@ const addNewItem2 = (data) => {
   items.value.push(data);
 }
 
-const onSubmit = () => {
-  userStore.addItemsToWishlist(items.value, userStore.userEvent.id)
+const onDeleteItem = (data) => {
+  items.value = items.value.filter((item) => item.id !== data.id);
 }
+
+const onSubmit = () => {
+  userStore.addItemsToWishlist(items.value, userStore.userEvent.id);
+  navigateTo('/dashboard');
+}
+
+onMounted(() => {
+  if (userStore.wishlist.length) {
+    items.value = userStore.wishlist;
+  }
+})
 </script>
 
 <template>
   <form class="form-wishlist" @submit.prevent="onSubmit">
     <ul class="form-wishlist__list">
       <li class="form-wishlist__item" v-for="item in items">
-        <FormFieldWishlist :data2="item"/>
+        <FormFieldWishlist :data2="item" @deleteItem="onDeleteItem"/>
       </li>
       <li>
         <FormFieldWishlist isNew @addNewItem="addNewItem2"/>

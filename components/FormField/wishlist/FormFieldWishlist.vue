@@ -1,7 +1,7 @@
 <script setup>
 import './form-field-wishlist.scss';
 
-const emits = defineEmits(['addNewItem', 'removeItem']);
+const emits = defineEmits(['addNewItem', 'deleteItem']);
 
 const props = defineProps({
   isNew: {
@@ -15,28 +15,28 @@ const props = defineProps({
 })
 
 const data = reactive({
-  text: '',
+  name: '',
   url: '',
 });
 
 const onButtonClick = () => {
   if (props.isNew) {
     const item = {
-      text: data.text,
-      link: data.url,
+      name: data.name,
+      url: data.url,
     }
     emits('addNewItem', item);
-    data.text = '';
+    data.name = '';
     data.url = '';
   } else {
-    emits('deleteItem', data);
+    emits('deleteItem', props.data2);
   }
 }
 
 onMounted(() => {
   if (props.data2) {
-    data.text = props.data2.text
-    data.url = props.data2.link
+    data.name = props.data2.name
+    data.url = props.data2.url
   }
 })
 </script>
@@ -44,7 +44,7 @@ onMounted(() => {
 <template>
   <div class="form-field form-field-wishlist">
     <div class="form-field-wishlist__name">
-      <input class="form-field__input form-field-wishlist__input" v-model="data.text" type="text" :disabled="!isNew"/>
+      <input class="form-field__input form-field-wishlist__input" v-model="data.name" type="text" :disabled="!isNew"/>
     </div>
     <div class="form-field-wishlist__link">
       <input class="form-field__input form-field-wishlist__input" v-model="data.url" type="url" :disabled="!isNew"/>
