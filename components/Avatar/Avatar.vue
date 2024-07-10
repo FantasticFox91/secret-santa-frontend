@@ -14,9 +14,9 @@ defineProps({
   <div
     class="avatar"
     :class="{
-      'avatar--available': status === 'available',
-      'avatar--unavailable': status === 'unavailable',
-      'avatar--unknown': status === 'unknown',
+      'avatar--available': status === 'ACCEPTED',
+      'avatar--unavailable': status === 'DECLINED',
+      'avatar--unknown': status === 'INVITED',
       'avatar--santa': santaHat,
       'avatar--header': header,
     }"

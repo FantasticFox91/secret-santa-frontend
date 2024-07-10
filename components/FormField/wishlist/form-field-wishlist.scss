@@ -1,6 +1,10 @@
 @import '../../../assets/styles/mixins.scss';
 @import '../../../assets/styles/variables.scss';
 
+.form-field.form-field-wishlist {
+  display: grid;
+}
+
 .form-field-wishlist {
   position: relative;
   display: grid;

@@ -1,5 +1,10 @@
 <script setup>
 import '../group/invite/invitation.scss';
+
+definePageMeta({
+  middleware: ['check-auth']
+})
+
 const store = useUserStore();
 
 const userEvent = computed(() => {
@@ -21,6 +26,7 @@ await useAsyncData('users', () => store.getUserEvent());
         <p class="invitation__name">{{ userEvent.name }}</p>
       </div>
       <MainButton class="edit-button" type="button" @click="onEditButtonClick">Edit</MainButton>
+      <!-- <InvitationList wishlist/> -->
     </div>
   </section>
 </template>

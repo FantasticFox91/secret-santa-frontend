@@ -3,10 +3,14 @@ import { useAuthStore } from '../auth/auth';
 
 export const useUserStore = defineStore('user', () => {
   const { $api } = useNuxtApp();
+  const authStore = useAuthStore();
   const myWishListShown = ref(false);
   const userEvent = ref(null);
   const userSlidePanel = ref('editEvent');
   const user = ref(null);
+  const wishlist = ref([]);
+
+  const mainUser = computed(() => authStore.user);
 
   const createGroup = async (data) => {
     const authStore = useAuthStore();
@@ -26,9 +30,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const getUserEvent = async () => {
-    const authStore = useAuthStore();
-    const token = authStore.accessToken;
-    const response = await $api.user.getUserEvent(token);
+    const response = await $api.user.getUserEvent();
     userEvent.value = response.event[0];
   }
 
@@ -37,7 +39,26 @@ export const useUserStore = defineStore('user', () => {
     userEvent.value = response.event;
   }
 
-  const showMyWishList = () => {
+  const addItemsToWishlist = async (items, eventId) => {
+    const response = await $api.wishlist.addItems(items, eventId);
+  }
+
+  const showMyWishList = async () => {
+    userSlidePanel.value = 'wishlist';
+    user.value = {user: mainUser.value};
+    const response = await $api.user.getUserWishlist(user.value.user.id, userEvent.value.id);
+    wishlist.value = response.wishList;
+    myWishListShown.value = true;
+  }
+
+  const showUserWishList = async (userId, eventId) => {
+    const response = await $api.user.getUserWishlist(userId, eventId);
+    wishlist.value = response.wishList;
+
+    const userInfo = userEvent.value.userStatus.find((el) => el.userId === userId);
+
+    user.value = userInfo;
+
     userSlidePanel.value = 'wishlist';
     myWishListShown.value = true;
   }
@@ -59,12 +80,18 @@ export const useUserStore = defineStore('user', () => {
     const response = await $api.user.acceptInvitation(data);
     navigateTo({path: '/login'});
   }
+
+  const getUserWishlist = async () => {
+    const response = await $api.user.getUserWishlist(user.value.user.id, userEvent.value.id);
+    wishlist.value = response.wishList;
+  }
   
   return { 
     userEvent,
     userSlidePanel,
     myWishListShown,
     user,
+    wishlist,
     createGroup,
     showMyWishList,
     hideMyWishList,
@@ -73,6 +100,9 @@ export const useUserStore = defineStore('user', () => {
     updateEvent,
     getRSVPEvent,
     declineInvitation,
-    acceptInvitation
+    acceptInvitation,
+    showUserWishList,
+    addItemsToWishlist,
+    getUserWishlist,
   }
 })
