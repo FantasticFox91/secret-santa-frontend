@@ -1,6 +1,11 @@
 import axios from 'axios';
 
 export default defineNuxtPlugin(() => {
+  let authToken = '';
+  if (process.client) {
+    authToken = localStorage.getItem('authToken');
+  }
+
   const axi = axios.create({
     baseURL: 'http://localhost/api',
   });
@@ -18,19 +23,8 @@ export default defineNuxtPlugin(() => {
     return Promise.reject(error);
   });
 
-  // Function to set the token in the header
-  function setAuthToken(token) {
-    axi.interceptors.request.use(
-      (config) => {
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
+  if (authToken) {
+    axi.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
   }
   
   const api = {
@@ -54,40 +48,29 @@ export default defineNuxtPlugin(() => {
           }
         } catch (e) {}
         return result;
+      },
+      async loginByToken() {
+        let result = null;
+        try {
+          const res = await axi.post(`/auth/login/token`);
+          result = res?.data;
+        } catch (e) {}
+        return result;
       }
     },
     user: {
-      async createGroup(data, token) {
-        const response = await useFetch(
-          'http://localhost/api/events/new',
-          {
-            method: 'POST',
-            body: data,
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },
-            onResponseError({ request, response, options }) {
-              console.log('error', response._data);
-              return null;
-            },
-            async onResponse({ request, response, options }) {
-              return response._data;
-            },
-          }
-        );
-
-        return response; 
-      },
-      async getUserEvent(token) {
+      async createGroup(data) {
         let result = null;
         try {
-          const res = await axi.get(`/events`, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },
-          });
+          const res = await axi.post(`/events/new`, data);
+          result = res?.data;
+        } catch (e) {}
+        return result;
+      },
+      async getUserEvent() {
+        let result = null;
+        try {
+          const res = await axi.get(`/events`);
           result = res?.data;
         } catch (e) {}
         return result;
@@ -100,38 +83,18 @@ export default defineNuxtPlugin(() => {
         } catch (e) {}
         return result;
       },
-      async updateEvent(data, token) {
-        const response = await useFetch(
-          `http://localhost/api/events/${data.id}`,
-          {
-            method: 'PATCH',
-            body: data,
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },
-            onResponseError({ request, response, options }) {
-              console.log('error', response._data);
-              return null;
-            },
-            async onResponse({ request, response, options }) {
-              return response._data;
-            },
-          }
-        );
-
-        return response; 
-      },
-      async inviteUser(data, token) {
+      async updateEvent(data) {
         let result = null;
         try {
-          const res = await axi.post(`http://localhost/api/auth/invite`, data,
-            {
-              headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-              }
-            });
+          const res = await axi.patch(`/events/${data.id}`, data);
+          result = res?.data;
+        } catch (e) {}
+        return result;
+      },
+      async inviteUser(data) {
+        let result = null;
+        try {
+          const res = await axi.post(`http://localhost/api/auth/invite`, data);
           result = res?.data;
         } catch (e) {}
         return result;
@@ -164,18 +127,6 @@ export default defineNuxtPlugin(() => {
         return result;
       }
     },
-    link: {
-      async getMetadata(url) {
-        let result = null;
-        try {
-          const response = await $fetch(`http://localhost/api/link?url=${encodeURIComponent(url)}`);
-          result = response;
-        } catch (error) {
-          console.error('Error fetching metadata:', error);
-        }
-        return result;
-      },
-    },
     wishlist: {
       async addItems(items, eventId) {
         let result = null;
@@ -190,6 +141,9 @@ export default defineNuxtPlugin(() => {
         }
         return result;
       },
+    },
+    setToken(token) {
+      axi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
   }
 

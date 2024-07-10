@@ -30,9 +30,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const getUserEvent = async () => {
-    const authStore = useAuthStore();
-    const token = authStore.accessToken;
-    const response = await $api.user.getUserEvent(token);
+    const response = await $api.user.getUserEvent();
     userEvent.value = response.event[0];
   }
 
@@ -82,6 +80,11 @@ export const useUserStore = defineStore('user', () => {
     const response = await $api.user.acceptInvitation(data);
     navigateTo({path: '/login'});
   }
+
+  const getUserWishlist = async () => {
+    const response = await $api.user.getUserWishlist(user.value.user.id, userEvent.value.id);
+    wishlist.value = response.wishList;
+  }
   
   return { 
     userEvent,
@@ -99,6 +102,7 @@ export const useUserStore = defineStore('user', () => {
     declineInvitation,
     acceptInvitation,
     showUserWishList,
-    addItemsToWishlist
+    addItemsToWishlist,
+    getUserWishlist,
   }
 })
