@@ -1,0 +1,133 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.dashboard-list-with-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+}
+
+.dashboard-filters {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 252px);
+  padding: 0;
+  list-style-type: none;
+  justify-content: space-between;
+
+  &__item {
+    width: min-content;
+    transition: opacity $trans-default;
+
+    &--transparent {
+      opacity: 0.5;
+    }
+  }
+}
+
+.form-field-dashboard {
+  position: relative;
+  display: flex;
+  width: min-content;
+  align-items: center;
+  justify-content: center;
+
+  &__label {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    padding: 40px;
+    padding-left: 75px;
+    font-family: $ff-thirdly;
+    font-size: 32px;
+    color: $color-default-white;
+    text-transform: uppercase;
+    border: 6px solid $color-default-white;
+    cursor: pointer;
+  }
+
+  &__number {
+    position: absolute;
+    top: -5px;
+    left: -20px;
+    margin: 0;
+    font-size: 120px;
+    font-family: $ff-numbers;
+    -webkit-text-stroke: 20px $color-default-white;
+    paint-order: stroke fill;
+  }
+
+  &__clear {
+    position: absolute;
+    top: -10px;
+    left: 75px;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding-left: 47px;
+    padding-right: 15px;
+    border: none;
+    font-family: $ff-main;
+    font-size: 14px;
+    line-height: 30px;
+    color: $color-default-white;
+    text-transform: uppercase;
+    background-color: $color-default-black;
+    border-radius: 50px;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: 15px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('/assets/svg/close.svg');
+    }
+  }
+
+  &--declined {
+    .form-field-dashboard__label {
+      background-color: $color-decline;
+    }
+
+    .form-field-dashboard__number {
+      color: $color-decline;
+    }
+
+    .form-field-dashboard__clear {
+      background-color: $color-saddle-brown;
+    }
+  }
+
+  &--pending {
+    .form-field-dashboard__label {
+      background-color: $color-supernova;
+    }
+
+    .form-field-dashboard__number {
+      color: $color-supernova;
+    }
+
+    .form-field-dashboard__clear {
+      background-color: $color-prussian-blue;
+    }
+  }
+
+  &--accepted {
+    .form-field-dashboard__label {
+      background-color: $color-spanish-green;
+    }
+
+    .form-field-dashboard__number {
+      color: $color-spanish-green;
+    }
+
+    .form-field-dashboard__clear {
+      background-color: $color-british-racing-green;
+    }
+  }
+}

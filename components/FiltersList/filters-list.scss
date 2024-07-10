@@ -1,0 +1,20 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.filters-list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 252px);
+  padding: 0;
+  list-style-type: none;
+  justify-content: space-between;
+
+  &__item {
+    width: min-content;
+    transition: opacity $trans-default;
+
+    &--transparent {
+      opacity: 0.5;
+    }
+  }
+}
