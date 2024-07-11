@@ -15,6 +15,10 @@ const onEditButtonClick = () => {
   store.showEditEvent();
 }
 
+const onMatchButtonClick = () => {
+  store.matchUsers();
+}
+
 await useAsyncData('users', () => store.getUserEvent());
 </script>
 
@@ -25,7 +29,12 @@ await useAsyncData('users', () => store.getUserEvent());
         <p class="invitation__date">{{ useDateUntil(userEvent.date) }}</p>
         <p class="invitation__name">{{ userEvent.name }}</p>
       </div>
-      <MainButton class="edit-button" type="button" @click="onEditButtonClick">Edit</MainButton>
+      <div class="invitation__buttons">
+        <MainButton class="match-button" type="button" @click="onEditButtonClick">
+          <svg-icon name="edit" width="24" height="24" />
+        </MainButton>
+        <MainButton class="edit-button" type="button" @click="onMatchButtonClick">Match</MainButton>
+      </div>
     </div>
     <DashboardListWithFilters />
   </section>
@@ -36,6 +45,19 @@ await useAsyncData('users', () => store.getUserEvent());
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.invitation__buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.match-button {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
 }
 
 .edit-button {
