@@ -125,7 +125,15 @@ export default defineNuxtPlugin(() => {
           result = res?.data;
         } catch (e) {}
         return result;
-      }
+      },
+      async matchUsers(eventId) {
+        let result = null;
+        try {
+          const res = await axi.get(`/matching/${eventId}`);
+          result = res?.data;
+        } catch (e) {}
+        return result;
+      },
     },
     wishlist: {
       async addItems(items, eventId) {
