@@ -1,0 +1,9 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.thank-you {
+  display: flex;
+  max-width: 706px;
+  flex-direction: column;
+  gap: 16px;
+}

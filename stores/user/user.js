@@ -89,6 +89,16 @@ export const useUserStore = defineStore('user', () => {
   const matchUsers = async () => {
     const response = await $api.user.matchUsers(userEvent.value.id);
   }
+
+  const getUserById = async (userId) => {
+    const response = await $api.user.getUserById(userId);
+    return response;
+  }
+
+  const sendThankyouMessage = async (santaId, eventId, message) => {
+    const response = await $api.thankYou.sentThankYouMessage(santaId, eventId, message);
+    return response;
+  }
   
   return { 
     userEvent,
@@ -109,5 +119,7 @@ export const useUserStore = defineStore('user', () => {
     addItemsToWishlist,
     getUserWishlist,
     matchUsers,
+    getUserById,
+    sendThankyouMessage,
   }
 })
