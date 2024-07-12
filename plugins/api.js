@@ -134,6 +134,14 @@ export default defineNuxtPlugin(() => {
         } catch (e) {}
         return result;
       },
+      async getUserById(userId) {
+        let result = null;
+        try {
+          const res = await axi.get(`/user/${userId}`);
+          result = res?.data;
+        } catch (e) {}
+        return result;
+      },
     },
     wishlist: {
       async addItems(items, eventId) {
@@ -142,6 +150,21 @@ export default defineNuxtPlugin(() => {
           const res = await axi.post(`/wishlist/add`, {
             items,
             eventId
+          });
+          result = res?.data;
+        } catch (error) {
+          console.error('Error adding items to wishlist:', error);
+        }
+        return result;
+      },
+    },
+    thankYou: {
+      async sentThankYouMessage(santaId, eventId, message) {
+        let result = null;
+        try {
+          const res = await axi.post(`/thank-you/${santaId}`, {
+            eventId,
+            message
           });
           result = res?.data;
         } catch (error) {

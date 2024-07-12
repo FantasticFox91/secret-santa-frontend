@@ -1,0 +1,8 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.form-thank-you {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
