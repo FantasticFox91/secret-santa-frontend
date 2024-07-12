@@ -18,14 +18,15 @@ const props = defineProps({
 })
 
 const userStore = useUserStore();
+const eventStore = useEventStore();
 
 const onUserWishlistClick = (userId) => {
-  userStore.showUserWishList(userId, userStore.userEvent.id);
+  userStore.showUserWishList(userId, eventStore.currentEvent.value.id);
 }
 
 const users = computed(() => {
   const { dashboard, statusFilter } = props;
-  const { userStatus } = userStore.userEvent;
+  const { userStatus } = eventStore.currentEvent;
 
   if (!dashboard || statusFilter === "") {
     return userStatus;

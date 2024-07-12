@@ -3,9 +3,9 @@ import { format } from 'date-fns';
 import MyForm from '../default/MyForm';
 import './form-edit.scss';
 
-const store = useUserStore();
+const store = useEventStore();
 const userEvent = computed(() => {
-  return store.userEvent;
+  return store.currentEvent;
 })
 
 const { name, date, sendReminder, id } = storeToRefs(userEvent.value);

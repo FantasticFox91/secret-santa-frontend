@@ -1,14 +1,15 @@
 <script setup>
+import { useEventStore } from '~/stores/event/event';
 import '../group/invite/invitation.scss';
 
 definePageMeta({
   middleware: ['check-auth']
 })
 
-const store = useUserStore();
+const eventStore = useEventStore();
 
 const userEvent = computed(() => {
-  return store.userEvent;
+  return eventStore.currentEvent;
 })
 
 const onEditButtonClick = () => {
