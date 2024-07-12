@@ -1,0 +1,48 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.form-textarea {
+  position: relative;
+  display: flex;
+
+  &__label {
+    position: absolute;
+    left: 28px;
+    top: calc(50% - 10px);
+    width: 50%;
+    font-family: "Kalam";
+    font-size: toRem(27);
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -0.54px;
+    color: $color-spanish-green;
+    text-transform: uppercase;
+    transition: all $trans-default;
+  }
+
+  &__textarea {
+    width: 100%;
+    padding: 60px 50px;
+    border: none;
+    outline: none;
+  }
+
+  &__textarea:focus + .form-textarea__label {
+    top: 0;
+    left: 0;
+    font-size: toRem(18);
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 9px;
+    background-color: $color-default-white;
+  }
+
+  &__textarea:not(:placeholder-shown) + .form-textarea__label {
+    font-size: toRem(18);
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 9px;
+  }
+}
