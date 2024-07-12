@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export default defineNuxtPlugin(() => {
-  let authToken = '';
-  if (process.client) {
-    authToken = localStorage.getItem('authToken');
-  }
+  const tokenCookie = useCookie('authToken');
+  const authToken2 = tokenCookie.value;
+  let authToken = authToken2 || '';
 
   const axi = axios.create({
     baseURL: 'http://localhost/api',

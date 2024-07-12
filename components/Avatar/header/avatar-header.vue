@@ -56,7 +56,7 @@ const cleanupEventListeners = () => {
           <NuxtLink class="avatar__link avatar__link--account" to="#">My account</NuxtLink>
         </li>
         <li class="avatar__item">
-          <NuxtLink class="avatar__link avatar__link--event" to="/event/new">My event</NuxtLink>
+          <NuxtLink class="avatar__link avatar__link--event" to="/event">My event</NuxtLink>
         </li>
         <li class="avatar__item">
           <button class="avatar__link avatar__link--logout" type="button">Logout</button>
