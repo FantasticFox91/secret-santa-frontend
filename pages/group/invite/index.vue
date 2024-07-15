@@ -1,17 +1,18 @@
 <script setup>
+import { useEventStore } from '~/stores/event/event';
 import './invitation.scss';
 
 definePageMeta({
   middleware: ['check-auth']
 })
 
-const store = useUserStore();
+const eventStore = useEventStore();
 
 await useAsyncData('users', () => store.getUserEvent());
 
 const userEvent = computed(() => {
-  return store.userEvent;
-});
+  return eventStore.currentEvent;
+})
 </script>
 
 <template>

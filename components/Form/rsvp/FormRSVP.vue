@@ -2,12 +2,12 @@
 import './form-rsvp.scss';
 import MyForm from '../default/MyForm';
 
-const store = useUserStore();
+const store = useEventStore();
 const props = defineProps({
   eventId: String,
 })
 const userEvent = computed(() => {
-  return store.userEvent;
+  return store.currentEvent;
 })
 const router = useRouter();
 const route = useRoute();

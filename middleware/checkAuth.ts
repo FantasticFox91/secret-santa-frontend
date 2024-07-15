@@ -15,6 +15,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     if (authToken) {
       const authenticateAndFetchData = async () => {
         $api.setToken(authToken);
+        authStore.accessToken = authToken
         const response = await $api.auth.loginByToken();
         authStore.user = response;
         await userStore.getUserEvent();
@@ -23,6 +24,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
           userStore.user = { user: response };
           await userStore.getUserWishlist();
         }
+
+        authStore.isAuth = true;
       };
 
       await authenticateAndFetchData();

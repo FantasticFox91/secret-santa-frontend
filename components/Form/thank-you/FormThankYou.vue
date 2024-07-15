@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang='ts'>
+import { useEventStore } from '~/stores/event/event';
 import './form-thank-you.scss';
 
 const props = defineProps({
@@ -17,8 +18,9 @@ const props = defineProps({
 });
 
 const message = ref('');
-const userStore = useUserStore();
-const { userEvent } = storeToRefs(userStore);
+const eventStore = useEventStore();
+const userStore = useUserStore()
+const { currentEvent } = storeToRefs(eventStore);
 
 const onChange = (value: string) => {
   message.value = value;
@@ -29,6 +31,6 @@ const isSubmitDisabled = computed(() => {
 })
 
 const onSubmit = () => {
-  userStore.sendThankyouMessage(props.data?.id, userEvent.value?.id, message.value);
+  userStore.sendThankyouMessage(props.data?.id, currentEvent.value?.id, message.value);
 }
 </script>

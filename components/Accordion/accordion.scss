@@ -1,0 +1,45 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.accordion {
+  &__toggler {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-family: $ff-thirdly;
+    color: $color-default-white;
+    text-transform: uppercase;
+    cursor: pointer;
+    
+    &::after {
+      position: absolute;
+      content: "";
+      right: 34px;
+      width: 85%;
+      height: 1px;
+      background-color: $color-default-white;
+    }
+  
+    &::before {
+      position: absolute;
+      content: "";
+      right: 0;
+      width: 24px;
+      height: 24px;
+      background: url('../../assets/svg/accordion-arrow.svg') no-repeat 50% 50%;
+      transition: transform 0.3s ease-out;
+    }
+  }
+
+  &__body {
+    overflow: hidden;
+    transition: 0.3s ease-out;
+  }
+
+  &--open {
+    .accordion__toggler::before {
+      transform: rotate(180deg);
+    }
+  }
+}

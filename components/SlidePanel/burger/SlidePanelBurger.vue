@@ -45,7 +45,7 @@ watch(burgerShown, (newValue, oldValue) => {
           <button class="slide-panel-burger__link" @click="showMyWishList">My wish list</button>
         </li>
       </ul>
-      <EventsList />
+      <EventsListBurger />
     </div>
   </Transition>
 </template>
