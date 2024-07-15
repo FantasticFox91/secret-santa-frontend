@@ -1,0 +1,40 @@
+@import '~/assets/styles/variables.scss';
+@import '~/assets/styles/mixins.scss';
+
+.events-list-burger {
+  margin-top: auto;
+
+  .events-list-burger__heading {
+    margin: 0;
+    font-family: 'Bebas Neue';
+    font-size: toRem(52);
+    line-height: 75px;
+    letter-spacing: 1.049px;
+    color: $color-spanish-green;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    font-family: 'Inter';
+    line-height: 32px;
+  }
+
+  &__subheading {
+    margin: 0;
+    font-size: toRem(32);
+    font-weight: 700;
+  }
+
+  &__date {
+    margin: 0;
+    font-size: toRem(16);
+  }
+}

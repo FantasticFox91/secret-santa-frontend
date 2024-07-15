@@ -28,6 +28,7 @@ const eventStore = useEventStore();
 const users = computed(() => {
   return eventStore?.currentEvent?.userStatus || [];
 });
+
 const userStatusCounts = computed(() => {
   return users.value.reduce(
     (counts: {declined: number, accepted: number, pending: number}, user: {status: 'DECLINED' | 'ACCEPTED' | 'PENDING'}) => {
@@ -55,5 +56,6 @@ const onFilterChange = (value) => {
 
 const onResetStatusFilter = () => {
   statusFilter.value = '';
+  emits('statusChanged', '');
 }
 </script>
