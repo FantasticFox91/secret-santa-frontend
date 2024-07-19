@@ -1,9 +1,7 @@
 <template>
   <ul class="pairing-list">
     <li class="pairing-list__item" v-for="pair in pairs" :key="pair.id">
-      <InviteCardPast :user="pair.santa" santa/>
-      <div class="pairing-list__line"></div>
-      <InviteCardPast :user="pair.person"/>
+      <PairingItem :pair="{santa: pair.santa, person: pair.person}" secret/>
     </li>
   </ul>
 </template>
@@ -12,6 +10,10 @@
 import './pairing-list.scss';
 
 defineProps({
-  pairs: Object
+  pairs: Object,
+  secret: {
+    type: Boolean,
+    default: false,
+  }
 })
 </script>

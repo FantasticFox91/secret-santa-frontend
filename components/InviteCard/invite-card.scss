@@ -92,4 +92,32 @@
   &--thank-you {
     margin-left: 100px;
   }
+
+  &--secret {
+    background-color: $color-secret;
+
+    .invite-card__avatar {
+      background-color: $color-secret;
+    }
+
+    .invite-card__info {
+      gap: 12px;
+    }
+
+    .invite-card__name {
+      width: 264px;
+      height: 29px;
+      background-color: $color-secret-2;
+    }
+
+    .invite-card__email {
+      width: 188px;
+      height: 14px;
+      background-color: $color-secret-2;
+    }
+  }
+
+  &--active {
+    cursor: pointer;
+  }
 }

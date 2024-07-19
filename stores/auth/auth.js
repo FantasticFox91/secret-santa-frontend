@@ -23,7 +23,6 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = response.user;
       const tokenCookie = useCookie('authToken');
       tokenCookie.value = response.accessToken; 
-      $asyncLocalStorage.setItem('token', response.accessToken);
       navigateTo({path: '/'})
     }
   }
@@ -33,5 +32,13 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = response;
   }
 
-  return { registration, login, loginByToken, isAuth, accessToken, user }
+  const logout = () => {
+    const tokenCookie = useCookie('authToken');
+    tokenCookie.value = '';
+    isAuth.value = false;
+  }
+
+  const isAdmin = () => user.value.role === "ADMIN";
+
+  return { registration, login, loginByToken, logout, isAdmin, isAuth, accessToken, user }
 })

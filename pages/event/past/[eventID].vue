@@ -5,10 +5,10 @@
       <p class="invitation__name">{{ pastEvent.event.name }}</p>
     </div>
     <PairingList :pairs="pastEvent.pairings" />
-    <Accordion label="Failed to RSVP">
+    <Accordion v-if="pastEvent.failedUsers.length" label="Failed to RSVP">
       <InvitationListPast :users="pastEvent.failedUsers" />
     </Accordion>
-    <Accordion label="declined to participate">
+    <Accordion v-if="pastEvent.declinedUsers.length" label="declined to participate">
       <InvitationListPast :users="pastEvent.declinedUsers" />
     </Accordion>
   </section>
