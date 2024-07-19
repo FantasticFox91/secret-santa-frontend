@@ -11,6 +11,7 @@ export const useUserStore = defineStore('user', () => {
   const userSlidePanel = ref('editEvent');
   const user = ref(null);
   const wishlist = ref([]);
+  const pastEvents = ref([]);
 
   const mainUser = computed(() => authStore.user);
 
@@ -90,7 +91,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const matchUsers = async () => {
-    const response = await $api.user.matchUsers(eventStore.currentEvent.value.id);
+    const response = await $api.user.matchUsers(eventStore.currentEvent.id);
   }
 
   const getUserById = async (userId) => {
@@ -102,6 +103,11 @@ export const useUserStore = defineStore('user', () => {
     const response = await $api.thankYou.sentThankYouMessage(santaId, eventId, message);
     return response;
   }
+
+  const getPastEvents = async () => {
+    const response = await $api.user.getUserPastEvents();
+    pastEvents.value = response;
+  }
   
   return { 
     userSlidePanel,
@@ -109,6 +115,7 @@ export const useUserStore = defineStore('user', () => {
     user,
     wishlist,
     userEvents,
+    pastEvents,
     createGroup,
     showMyWishList,
     hideMyWishList,
@@ -124,5 +131,6 @@ export const useUserStore = defineStore('user', () => {
     matchUsers,
     getUserById,
     sendThankyouMessage,
+    getPastEvents,
   }
 })
