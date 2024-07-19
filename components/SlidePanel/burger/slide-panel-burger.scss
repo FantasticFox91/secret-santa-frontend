@@ -13,6 +13,7 @@
   padding: 300px 46px 46px;
   background-color: $color-supernova;
   transform: translateX(-78%);
+  overflow-x: auto;
 
   &__list {
     display: flex;
@@ -21,6 +22,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+    flex-grow: 1;
   }
 
   &__link {

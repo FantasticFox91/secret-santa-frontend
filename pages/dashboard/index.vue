@@ -7,6 +7,7 @@ definePageMeta({
 })
 
 const eventStore = useEventStore();
+const store = useUserStore();
 
 const userEvent = computed(() => {
   return eventStore.currentEvent;
@@ -20,7 +21,15 @@ const onMatchButtonClick = () => {
   store.matchUsers();
 }
 
-await useAsyncData('users', () => store.getUserEvent());
+onMounted(() => {
+  const today = new Date();
+  const eventDate = new Date(userEvent.value.date);
+  store.getPastEvents();
+
+  if (eventDate < today) {
+    eventStore.setCurrentEvent(store.userEvents[0]);
+  }
+})
 </script>
 
 <template>

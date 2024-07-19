@@ -1,6 +1,10 @@
 <template>
   <div class="accordion" :class="{'accordion--open': isShown}">
-    <p class="accordion__toggler" @click="toggleAccordion">{{ label }}</p>
+    <div class="accordion__title" @click="toggleAccordion">
+      <p class="accordion__toggler">{{ label }}</p>
+      <div class="accordion__line"></div>
+      <div class="accordion__icon"></div>
+    </div>
     <Transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave" name="accordion">
       <div class="accordion__body" v-show="isShown">
         <slot></slot>
@@ -29,13 +33,13 @@ const beforeEnter = (el: Element) => {
 
 const enter = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.height = element.scrollHeight + 'px';
+  element.style.height = element.scrollHeight + 30 + 'px';
   element.style.paddingTop = '30px'
 }
 
 const beforeLeave = (el: Element) => {
   const element = el as HTMLElement;
-  element.style.height = element.scrollHeight + 'px';
+  element.style.height = element.scrollHeight + 30 + 'px';
 }
 
 const leave = (el: Element) => {

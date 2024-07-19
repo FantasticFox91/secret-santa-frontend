@@ -150,8 +150,8 @@
 
   &--santa::after {
     @include pseudo(67px, 56px);
-    top: -23px;
-    right: -23px;
+    top: -19px;
+    right: -16px;
     background: url('/assets/images/santa-hat.png') no-repeat 50% 50%;
   }
 }

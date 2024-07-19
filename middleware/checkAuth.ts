@@ -19,6 +19,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         const response = await $api.auth.loginByToken();
         authStore.user = response;
         await userStore.getUserEvent();
+        await userStore.getPastEvents();
         
         if (to.name === 'wishlist') {
           userStore.user = { user: response };
