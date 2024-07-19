@@ -5,8 +5,8 @@
           declined
         </FormFieldDashboard>
       </li>
-      <li class="filters-list__item form-field-dashboard--pending" :class="{'filters-list__item--transparent': statusFilter !== 'pending' && statusFilter !== ''}">
-        <FormFieldDashboard v-model="statusFilter" :id="'pending'" :number="pendingUsers" @onChange="onFilterChange" @resetFilter="onResetStatusFilter">
+      <li class="filters-list__item form-field-dashboard--pending" :class="{'filters-list__item--transparent': statusFilter !== 'invited' && statusFilter !== ''}">
+        <FormFieldDashboard v-model="statusFilter" :id="'invited'" :number="pendingUsers" @onChange="onFilterChange" @resetFilter="onResetStatusFilter">
           pending
         </FormFieldDashboard>
       </li>
@@ -36,7 +36,7 @@ const userStatusCounts = computed(() => {
         counts.declined++;
       } else if (user.status === 'ACCEPTED') {
         counts.accepted++;
-      } else if (user.status === 'PENDING') {
+      } else if (user.status === 'INVITED') {
         counts.pending++;
       }
       return counts;

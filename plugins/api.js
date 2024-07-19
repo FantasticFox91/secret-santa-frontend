@@ -141,6 +141,14 @@ export default defineNuxtPlugin(() => {
         } catch (e) {}
         return result;
       },
+      async getUserPastEvents() {
+        let result = null;
+        try {
+          const res = await axi.get(`/events/asd/getPastEvents`);
+          result = res?.data.result;
+        } catch (e) {}
+        return result;
+      }
     },
     wishlist: {
       async addItems(items, eventId) {
@@ -168,6 +176,19 @@ export default defineNuxtPlugin(() => {
           result = res?.data;
         } catch (error) {
           console.error('Error adding items to wishlist:', error);
+        }
+        return result;
+      },
+    },
+    event: {
+      async getPastEvent(eventId) {
+        let result = null;
+        try {
+          const res = await axi.get(`/events/past/${eventId}`);
+          result = res?.data.result;
+          console.log(result)
+        } catch (error) {
+          console.error('Error fetching past event:', error);
         }
         return result;
       },

@@ -2,6 +2,7 @@
 import './form-rsvp.scss';
 import MyForm from '../default/MyForm';
 
+const userStore = useUserStore();
 const store = useEventStore();
 const props = defineProps({
   eventId: String,
@@ -21,7 +22,7 @@ const onDecline = () => {
   router.push('/rsvp/declined')
 }
 
-await useAsyncData('rsvpEvent', () => store.getRSVPEvent(props.eventId));
+await useAsyncData('rsvpEvent', () => userStore.getRSVPEvent(props.eventId));
 
 onMounted(() => {
   store.user = {

@@ -40,9 +40,9 @@ const users = computed(() => {
 
 <template>
   <ul v-if="wishlist" class="invitation-list">
-    <InviteCard class="invite-card--wishlist" v-for="user in users" :user="user" :key="user.user.id" @click="() => onUserWishlistClick(user.user.id)"/>
+    <InviteCard class="invite-card--wishlist" v-for="user in users" :user="user" :key="user.id" @click="() => onUserWishlistClick(user.id)"/>
   </ul>
   <ul v-else class="invitation-list">
-    <InviteCard v-for="user in users" :user="user" :key="user.user.id"/>
+    <InviteCard v-for="user in users" :user="user" :key="user.id"/>
   </ul>
 </template>

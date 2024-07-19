@@ -2,43 +2,50 @@
 @import '~/assets/styles/mixins.scss';
 
 .accordion {
+  position: relative;
+
   &__toggler {
     position: relative;
     display: flex;
     align-items: center;
     margin: 0;
+    margin-top: 5px;
     font-family: $ff-thirdly;
     color: $color-default-white;
     text-transform: uppercase;
     cursor: pointer;
-    
-    &::after {
-      position: absolute;
-      content: "";
-      right: 34px;
-      width: 85%;
-      height: 1px;
-      background-color: $color-default-white;
-    }
-  
-    &::before {
-      position: absolute;
-      content: "";
-      right: 0;
-      width: 24px;
-      height: 24px;
-      background: url('../../assets/svg/accordion-arrow.svg') no-repeat 50% 50%;
-      transition: transform 0.3s ease-out;
-    }
+  }
+
+  &__title {
+    display: grid;
+    align-items: center;
+    grid-template-columns: max-content 1fr 24px;
+    column-gap: 10px;
+    cursor: pointer;
+  }
+
+  &__line {
+    align-self: center;
+    height: 1px;
+    background-color: $color-default-white;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    background: url('../../assets/svg/accordion-arrow.svg') no-repeat 50% 50%;
+    transition: transform 0.3s ease-out;
   }
 
   &__body {
+    margin-left: -23px;
+    padding-left: 23px;
     overflow: hidden;
     transition: 0.3s ease-out;
   }
 
   &--open {
-    .accordion__toggler::before {
+    .accordion__icon {
       transform: rotate(180deg);
     }
   }
