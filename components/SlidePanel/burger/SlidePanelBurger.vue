@@ -5,6 +5,7 @@ import { useUserStore } from '../../stores/user/user';
 
 const store = useMainStore();
 const userStore = useUserStore();
+const authStore = useAuthStore();
 const { burgerShown } = storeToRefs(store);
 
 const showMyWishList = () => {
@@ -38,7 +39,7 @@ watch(burgerShown, (newValue, oldValue) => {
         <li>
           <button class="slide-panel-burger__link" @click="goToDashboardPage">Dashboard</button>
         </li>
-        <li>
+        <li v-if="authStore.isAdmin()">
           <button class="slide-panel-burger__link" @click="goToOurGroupPage">Our group</button>
         </li>
         <li>

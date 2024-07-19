@@ -8,6 +8,9 @@ defineProps({
 })
 
 const isMenuShown = ref(false);
+const authStore = useAuthStore();
+const route = useRoute();
+const pageName = computed(() => route.name);
 
 const onClick = () => {
   isMenuShown.value = !isMenuShown.value;
@@ -33,10 +36,19 @@ const onEscPress = (e) => {
   }
 }
 
+const onLogoutButtonClick = () => {
+  authStore.logout();
+  navigateTo('/login')
+}
+
 const cleanupEventListeners = () => {
   window.removeEventListener('click', closeMenu);
   window.removeEventListener('keydown', onEscPress);
 }
+
+watch(pageName, () => {
+  isMenuShown.value = false;
+})
 </script>
 
 <template>
@@ -59,7 +71,7 @@ const cleanupEventListeners = () => {
           <NuxtLink class="avatar__link avatar__link--event" to="/event">My event</NuxtLink>
         </li>
         <li class="avatar__item">
-          <button class="avatar__link avatar__link--logout" type="button">Logout</button>
+          <button class="avatar__link avatar__link--logout" type="button" @click="onLogoutButtonClick">Logout</button>
         </li>
       </ul>
     </div>

@@ -5,7 +5,7 @@
     <Accordion label="Past events" v-if="finishedEvents.length">
       <EventsListPast :items="finishedEvents" />
     </Accordion>
-    <MainButton type="button" @click="onCreateNewEventButtonClick">
+    <MainButton v-if="authStore.isAdmin()" type="button" @click="onCreateNewEventButtonClick">
       Create new event
     </MainButton>
   </section>
@@ -17,6 +17,7 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
+const authStore = useAuthStore();
 const { userEvents } = storeToRefs(userStore);
 
 const activeUserEvents = computed(() => {
