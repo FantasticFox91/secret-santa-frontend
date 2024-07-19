@@ -73,6 +73,7 @@
     text-transform: uppercase;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 
     &::before {
       @include pseudo(32px, 32px);

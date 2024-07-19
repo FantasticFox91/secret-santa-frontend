@@ -2,6 +2,10 @@
 import './form-wishlist.scss';
 
 const userStore = useUserStore();
+const eventStore = useEventStore();
+const userEvent = computed(() => {
+  return eventStore.currentEvent;
+})
 
 const items = ref([]);
 
@@ -14,7 +18,7 @@ const onDeleteItem = (data) => {
 }
 
 const onSubmit = () => {
-  userStore.addItemsToWishlist(items.value, userStore.userEvent.id);
+  userStore.addItemsToWishlist(items.value, userEvent.value.id);
   navigateTo('/dashboard');
 }
 

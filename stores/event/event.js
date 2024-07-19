@@ -3,7 +3,15 @@ import { defineStore } from 'pinia';
 export const useEventStore = defineStore('event', () => {
   const { $api } = useNuxtApp();
   const currentEvent = ref({});
-  const pastEvent = ref({});
+  const pastEvent = ref({
+    event: {
+      name: '',
+      date: '',
+    },
+    pairings: [],
+    failedUsers: [],
+    declinedUsers: [],
+  });
 
   const setCurrentEvent = (event) => {
     currentEvent.value = event;

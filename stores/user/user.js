@@ -86,7 +86,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const getUserWishlist = async () => {
-    const response = await $api.user.getUserWishlist(user.value.user.id, eventStore.currentEvent.value.id);
+    const response = await $api.user.getUserWishlist(user.value.user.id, eventStore.currentEvent.id);
     wishlist.value = response.wishList;
   }
 

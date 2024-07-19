@@ -18,13 +18,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         authStore.accessToken = authToken
         const response = await $api.auth.loginByToken();
         authStore.user = response;
+        userStore.user = { user: response };
         await userStore.getUserEvent();
         await userStore.getPastEvents();
-        
-        if (to.name === 'wishlist') {
-          userStore.user = { user: response };
-          await userStore.getUserWishlist();
-        }
+        await userStore.getUserWishlist();
 
         authStore.isAuth = true;
       };
@@ -34,5 +31,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     } else {
       return navigateTo("/login");
     }
+  } else {
+    await userStore.getUserEvent();
+    await userStore.getPastEvents();
   }
 });

@@ -8,6 +8,7 @@ definePageMeta({
 
 const eventStore = useEventStore();
 const store = useUserStore();
+const authStore = useAuthStore();
 
 const userEvent = computed(() => {
   return eventStore.currentEvent;
@@ -20,6 +21,24 @@ const onEditButtonClick = () => {
 const onMatchButtonClick = () => {
   store.matchUsers();
 }
+
+const users = computed(() => {
+  const declinedUsers = [];
+  const failedUsers = [];
+
+  userEvent.value.userStatus.forEach((userStatus) => {
+    switch (userStatus.status) {
+      case 'DECLINED':
+        declinedUsers.push(userStatus);
+        break;
+      case 'INVITED':
+        failedUsers.push(userStatus);
+        break;
+    }
+  });
+
+  return {declinedUsers, failedUsers}
+})
 
 onMounted(() => {
   const today = new Date();
@@ -39,14 +58,23 @@ onMounted(() => {
         <p class="invitation__date">{{ useDateUntil(userEvent.date) }}</p>
         <p class="invitation__name">{{ userEvent.name }}</p>
       </div>
-      <div class="invitation__buttons">
+      <div class="invitation__buttons" v-if="authStore.isAdmin()">
         <MainButton class="match-button" type="button" @click="onEditButtonClick">
           <svg-icon name="edit" width="24" height="24" />
         </MainButton>
-        <MainButton class="edit-button" type="button" @click="onMatchButtonClick">Match</MainButton>
+        <MainButton v-if="!userEvent?.pairings.length && authStore.isAdmin()" class="edit-button" type="button" @click="onMatchButtonClick">Match</MainButton>
       </div>
     </div>
-    <DashboardListWithFilters />
+    <DashboardListWithFilters v-if="!userEvent.pairings.length"/>
+    <div class="invitation__matched" v-else>
+      <PairingList :pairs="userEvent.pairings" secret/>
+      <Accordion v-if="users.failedUsers.length" label="Failed to RSVP">
+        <InvitationListPast :users="users.failedUsers" />
+      </Accordion>
+      <Accordion v-if="users.declinedUsers.length" label="declined to participate">
+        <InvitationListPast :users="users.declinedUsers" />
+      </Accordion>
+    </div>
   </section>
 </template>
 
@@ -74,5 +102,11 @@ onMounted(() => {
   font-size: 14px;
   line-height: 30px;
   padding: 2px 40px;
+}
+
+.invitation__matched {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>
