@@ -67,6 +67,11 @@ export const useUserStore = defineStore('user', () => {
     myWishListShown.value = true;
   }
 
+  const showUserEdit = () => {
+    userSlidePanel.value = 'userEdit';
+    myWishListShown.value = true;
+  }
+
   const hideMyWishList = () => {
     myWishListShown.value = false;
   }
@@ -108,6 +113,14 @@ export const useUserStore = defineStore('user', () => {
     const response = await $api.user.getUserPastEvents();
     pastEvents.value = response;
   }
+
+  const updateUserInfo = async (user) => {
+    const authStore = useAuthStore();
+    const response = await $api.user.updateUserInfo(user);
+    user.value = { user: response};
+    authStore.user = response;
+    myWishListShown.value = false;
+  }
   
   return { 
     userSlidePanel,
@@ -132,5 +145,7 @@ export const useUserStore = defineStore('user', () => {
     getUserById,
     sendThankyouMessage,
     getPastEvents,
+    showUserEdit,
+    updateUserInfo,
   }
 })
