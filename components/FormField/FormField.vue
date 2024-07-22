@@ -16,6 +16,10 @@ defineProps({
   modelValue: {
     type: String,
   },
+  required: {
+    type: Boolean,
+    default: false,
+  }
 })
 
 const emits = defineEmits(['update:modelValue'])
@@ -33,7 +37,8 @@ const onInput = (e) => {
 
 <template>
   <div class="form-field">
-    <input class="form-field__input" :id="id" autocomplete="off"  :type="isHide ? type : 'text'" :value="modelValue" placeholder="" @input="onInput"/>
+    <input v-if="type === 'email'" class="form-field__input" :id="id" autocomplete="off"  type="email" :value="modelValue" placeholder="" @input="onInput"/>
+    <input v-else class="form-field__input" :id="id" autocomplete="off"  :type="isHide ? type : 'text'" :value="modelValue" placeholder="" @input="onInput"/>
     <label class="form-field__label" :for="id">{{ label }}</label>
     <button v-if="type === 'password'" class="form-field__password-button" type="button" @click="toggleHide">
       <span class="visually-hidden">Show/hide password</span>

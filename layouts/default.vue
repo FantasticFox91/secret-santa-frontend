@@ -4,10 +4,12 @@ const { userSlidePanel } = storeToRefs(store);
 
 const wishlist = resolveComponent('Wishlist');
 const editEvent = resolveComponent('FormEdit');
+const editUser = resolveComponent('FormUser');
 
 const components = {
   'editevent': editEvent,
-  'wishlist': wishlist
+  'wishlist': wishlist,
+  'userEdit': editUser,
 }
 </script>
 
@@ -22,13 +24,7 @@ const components = {
       <div class="default__column">
         <slot></slot>
         <SlidePanel>
-          <!-- <template #title>
-            <h1 class="title">Wishlist</h1>
-            <MainButton class="slide-panel__edit-button" type="button">edit</MainButton>
-          </template> -->
           <component :is="components[userSlidePanel]" />
-          <!-- <InviteCard type="wishlist" :user="user"/> -->
-          <!-- <Wishlist /> -->
         </SlidePanel>
       </div>
     </div>

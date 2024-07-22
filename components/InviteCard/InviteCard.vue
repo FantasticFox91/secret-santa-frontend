@@ -29,7 +29,7 @@ const onDeleteClick = (id) => {
     <p v-else-if="type === 'thank-you'" class="invite-card__label invite-card__label--thank-you">to</p>
     <Avatar class="invite-card__avatar" :class="{'avatar--santa': santa}" :name="user.user.firstName" :status="user.status" :imageSrc="user.user.avatar"/>
     <div class="invite-card__info">
-      <p class="invite-card__name">{{ user.user.firstName }}</p>
+      <p class="invite-card__name">{{ `${user.user.firstName} ${user.user.lastName.length ? user.user.lastName : ''}` }}</p>
       <p class="invite-card__email">{{ user.user.email }}</p>
     </div>
     <button class="invite-card__delete" v-if="user.user.status !== 'ACCEPTED' && type !== 'past' && authStore.isAdmin()" @click.stop="onDeleteClick(user.user.id)">

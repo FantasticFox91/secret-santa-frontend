@@ -2,8 +2,8 @@
   <section class="events">
     <h1 class="title">Events list</h1>
     <EventsList :items="activeUserEvents" />
-    <Accordion label="Past events" v-if="finishedEvents.length">
-      <EventsListPast :items="finishedEvents" />
+    <Accordion label="Past events" v-if="pastEvents.length">
+      <EventsListPast :items="pastEvents" />
     </Accordion>
     <MainButton v-if="authStore.isAdmin()" type="button" @click="onCreateNewEventButtonClick">
       Create new event
@@ -18,7 +18,7 @@ definePageMeta({
 
 const userStore = useUserStore();
 const authStore = useAuthStore();
-const { userEvents } = storeToRefs(userStore);
+const { userEvents, pastEvents } = storeToRefs(userStore);
 
 const activeUserEvents = computed(() => {
   return userEvents.value.filter((event) => {
@@ -26,15 +26,6 @@ const activeUserEvents = computed(() => {
     const eventDate = new Date(event.date);
 
     return eventDate >= today;
-  })
-})
-
-const finishedEvents = computed(() => {
-  return userEvents.value.filter((event) => {
-    const today = new Date();
-    const eventDate = new Date(event.date);
-
-    return eventDate < today;
   })
 })
 

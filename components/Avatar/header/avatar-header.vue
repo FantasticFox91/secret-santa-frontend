@@ -9,6 +9,7 @@ defineProps({
 
 const isMenuShown = ref(false);
 const authStore = useAuthStore();
+const userStore = useUserStore();
 const route = useRoute();
 const pageName = computed(() => route.name);
 
@@ -46,6 +47,10 @@ const cleanupEventListeners = () => {
   window.removeEventListener('keydown', onEscPress);
 }
 
+const onEditAccountClick = () => {
+  userStore.showUserEdit();
+}
+
 watch(pageName, () => {
   isMenuShown.value = false;
 })
@@ -65,7 +70,7 @@ watch(pageName, () => {
     <div class="avatar__menu" v-if="isMenuShown">
       <ul class="avatar__list">
         <li class="avatar__item">
-          <NuxtLink class="avatar__link avatar__link--account" to="#">My account</NuxtLink>
+          <button class="avatar__link avatar__link--account" @click="onEditAccountClick">My account</button>
         </li>
         <li class="avatar__item">
           <NuxtLink class="avatar__link avatar__link--event" to="/event">My event</NuxtLink>

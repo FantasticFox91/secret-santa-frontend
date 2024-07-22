@@ -3,6 +3,7 @@ import './avatar.scss';
 
 defineProps({
   name: String,
+  lastName: String,
   imageSrc: String,
   status: String,
   santaHat: Boolean,
