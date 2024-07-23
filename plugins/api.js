@@ -148,6 +148,14 @@ export default defineNuxtPlugin(() => {
           result = res?.data.result;
         } catch (e) {}
         return result;
+      },
+      async updateUserInfo(user) {
+        let result = null;
+        try {
+          const res = await axi.patch(`/user/info`, user);
+          result = res?.data;
+        } catch (e) {}
+        return result;
       }
     },
     wishlist: {

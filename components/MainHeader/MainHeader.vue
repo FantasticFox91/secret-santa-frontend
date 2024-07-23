@@ -1,5 +1,7 @@
 <script setup>
 import './header.scss';
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore)
 </script>
 
 <template>
@@ -7,7 +9,7 @@ import './header.scss';
     <div class="container header__container">
       <div class="header__wrapper">
         <Burger />
-        <Avatar-header name="Grygorii Lysytsia" imageSrc="/_nuxt/assets/images/avatar.png" header/>
+        <Avatar-header :name="`${user.firstName} ${user.lastName}`" :imageSrc="user.avatar" header/>
       </div>
     </div>
   </header>
