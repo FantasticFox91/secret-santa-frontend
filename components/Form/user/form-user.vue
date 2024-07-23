@@ -15,7 +15,12 @@ const form = reactive({
   name: `${firstName} ${lastName}`,
   email,
   password: '',
+  avatar: null,
 })
+
+const onAvatarUpdate = (file) => {
+  form.avatar = file;
+}
 
 const onSubmit = () => {
   userStore.updateUserInfo({user: form});
@@ -25,7 +30,8 @@ watch(user, (newUser) => {
   if (newUser) {
     form.id = newUser.id || '';
     form.name = `${newUser.firstName} ${newUser.lastName}` || '';
-    form.email = newUser.email || ''
+    form.email = newUser.email || '';
+    form.avatar = newUser.avatar || null;
   }
 }, { immediate: true });
 
@@ -39,6 +45,7 @@ watch(user, (newUser) => {
     <FormField id="User name" label="Name" v-model="form.name"/>
     <FormField id="User email" label="Email" type="email" v-model="form.email"/>
     <FormField id="User password" label="New password" type="password" v-model="form.password"/>
+    <FormAvatar v-if="!form.avatar" @update="onAvatarUpdate" />
     <MainButton type="submit">Update</MainButton>
   </MyForm>
 </template>
