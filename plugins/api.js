@@ -161,6 +161,15 @@ export default defineNuxtPlugin(() => {
         } catch (e) {
         }
         return result;
+      },
+      async deleteInvite(userId, eventId) {
+        let result = null;
+        try {
+          const res = await axi.delete(`/user/delete/${eventId}/${userId}`);
+          result = res?.data;
+        } catch (e) {
+        }
+        return result;
       }
     },
     wishlist: {

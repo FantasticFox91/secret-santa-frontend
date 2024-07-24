@@ -4,29 +4,33 @@ import './modal-delete.scss';
 import Modal from '../default/Modal';
 import { useMainStore } from '@/stores/main/main';
 
+const { $modals } = useNuxtApp();
 const mainStore = useMainStore();
-const user = ref(null);
+const userStore = useUserStore();
+const { deleteUser } = storeToRefs(mainStore);
 
-const test = () => {
-  user.value = mainStore.getUserById(mainStore.deleteUserId);
+const onConfirmButtonClick = () => {
+  userStore.deleteInvitation(deleteUser.value.user.id, deleteUser.value.id);
+  $modals.close();
 }
+
 </script>
 
 <template>
-  <Modal class="modal-delete" name="delete" @onShow="test">
+  <Modal class="modal-delete" name="delete">
     <h2 class="modal__heading">Are you sure you want to remove this?</h2>
-    <div class="invite-card modal-delete__card" v-if="user">
-      <Avatar class="invite-card__avatar" :name="user.name" :status="user.status" :imageSrc="user.avatarSrc"/>
+    <div class="invite-card modal-delete__card" v-if="deleteUser">
+      <Avatar class="invite-card__avatar" :name="deleteUser.user.firstName" status="" :imageSrc="deleteUser.avatar"/>
       <div class="invite-card__info">
-        <p class="invite-card__name">{{ user.name }}</p>
-        <p class="invite-card__email">{{ user.email }}</p>
+        <p class="invite-card__name">{{ `${deleteUser.user.firstName} ${deleteUser.user.lastName}` }}</p>
+        <p class="invite-card__email">{{ deleteUser.user.email }}</p>
       </div>
     </div>
     <div class="modal-delete__buttons">
-      <button class="modal-delete__button" type="button">
+      <button class="modal-delete__button" type="button" @click="$modals.close()">
         cancel
       </button>
-      <button class="modal-delete__button modal-delete__button--accept" type="button">
+      <button class="modal-delete__button modal-delete__button--accept" type="button" @click="onConfirmButtonClick">
         remove
       </button>
     </div>
