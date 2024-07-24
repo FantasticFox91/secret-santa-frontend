@@ -12,6 +12,7 @@ const form = ref(null);
 const formData = reactive(
   {
     name: '',
+    lastName: '',
     email: '',
     eventID: '',
   }
@@ -19,6 +20,9 @@ const formData = reactive(
 
 const onSubmit = () => {
   formData.eventID = props.eventId;
+  const userName = formData.name.split(' ');
+  formData.name = userName[0].charAt(0).toUpperCase() + userName[0].slice(1);
+  formData.lastName = userName.length >= 2 ? userName[1].charAt(0).toUpperCase() + userName[1].slice(1) : '';
   mainStore.addUser(formData);
   form.value.reset();
 }

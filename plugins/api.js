@@ -149,12 +149,17 @@ export default defineNuxtPlugin(() => {
         } catch (e) {}
         return result;
       },
-      async updateUserInfo(user) {
+      async updateUserInfo(formData) {
         let result = null;
         try {
-          const res = await axi.patch(`/user/info`, user);
+          const res = await axi.patch('/user/info', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
           result = res?.data;
-        } catch (e) {}
+        } catch (e) {
+        }
         return result;
       }
     },
