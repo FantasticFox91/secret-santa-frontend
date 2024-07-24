@@ -20,7 +20,14 @@ const isButtonDisabled = computed(() => {
 
 const onSubmit = () => {
   formData.email = store.user.email;
-  store.acceptInvitation(formData);
+  const data = new FormData();
+  data.append('user', JSON.stringify({
+    email: formData.email,
+    password: formData.password,
+  }));
+  data.append('file', formData.avatar);
+
+  store.acceptInvitation(data);
 }
 </script>
 

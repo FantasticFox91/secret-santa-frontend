@@ -47,10 +47,6 @@ export const useMainStore = defineStore('main', () => {
     const authStore = useAuthStore();
     const token = authStore.accessToken;
     const response = await $api.user.inviteUser(data, token);
-    // data.id = Math.floor(Math.random() * (100 - 5) + 5);
-    // data.status = "unknown";
-    // data.avatarSrc = '';
-    // users.value.push(data);
   }
 
   const getUserById = (id) => {
