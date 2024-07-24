@@ -121,6 +121,11 @@ export const useUserStore = defineStore('user', () => {
     authStore.user = response;
     myWishListShown.value = false;
   }
+
+  const deleteInvitation = async (id) => {
+    const response = await $api.user.deleteInvite(id, eventStore.currentEvent.id);
+    getUserEvent()
+  }
   
   return { 
     userSlidePanel,
@@ -147,5 +152,6 @@ export const useUserStore = defineStore('user', () => {
     getPastEvents,
     showUserEdit,
     updateUserInfo,
+    deleteInvitation,
   }
 })

@@ -17,8 +17,8 @@ defineProps({
   }
 })
 
-const onDeleteClick = (id) => {
-  mainStore.deleteUserId = id;
+const onDeleteClick = (user) => {
+  mainStore.deleteUser = user;
   $modals.show('delete');
 }
 </script>
@@ -32,7 +32,7 @@ const onDeleteClick = (id) => {
       <p class="invite-card__name">{{ `${user.user.firstName} ${user.user.lastName.length ? user.user.lastName : ''}` }}</p>
       <p class="invite-card__email">{{ user.user.email }}</p>
     </div>
-    <button class="invite-card__delete" v-if="user.user.status !== 'ACCEPTED' && type !== 'past' && authStore.isAdmin()" @click.stop="onDeleteClick(user.user.id)">
+    <button class="invite-card__delete" v-if="user.user.status !== 'ACCEPTED' && type !== 'past' && authStore.isAdmin() && user.status === 'INVITED'" @click.stop="onDeleteClick(user)">
       <span class="visually-hidden">Delete invitation</span>
     </button>
   </div>

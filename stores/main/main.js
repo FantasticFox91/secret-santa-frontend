@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 export const useMainStore = defineStore('main', () => {
   const { $api } = useNuxtApp();
   const count = ref(0);
+  const deleteUser = ref(null);
   const deleteUserId = ref('');
   const burgerShown = ref(false);
   const users = ref([
@@ -45,8 +46,10 @@ export const useMainStore = defineStore('main', () => {
 
   const addUser = async (data) => {
     const authStore = useAuthStore();
+    const userStore = useUserStore();
     const token = authStore.accessToken;
     const response = await $api.user.inviteUser(data, token);
+    userStore.getUserEvent();
   }
 
   const getUserById = (id) => {
@@ -65,5 +68,5 @@ export const useMainStore = defineStore('main', () => {
     return $api.link.getMetadata(url);
   }
 
-  return { count, users, deleteUserId, burgerShown, addUser, getUserById, showBurger, hideBurger, getUrlMeta }
+  return { count, users, deleteUserId, burgerShown, deleteUser, addUser, getUserById, showBurger, hideBurger, getUrlMeta }
 })
