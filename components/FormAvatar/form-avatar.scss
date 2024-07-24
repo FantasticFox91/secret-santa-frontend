@@ -1,3 +1,6 @@
+@import '~/assets/styles/variables.scss';
+
+
 .form-avatar {
   &__dropbox {
     padding: 20px 32px 20px;
@@ -30,5 +33,36 @@
       letter-spacing: -0.947px;
       text-transform: uppercase;
     }
+  }
+
+  &__exist-avatar {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__remove-button {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: none;
+    font-family: $ff-main;
+    font-size: 14px;
+    line-height: 30px;
+    color: $color-default-white;
+    text-transform: uppercase;
+    background-color: $color-british-racing-green;
+    border-radius: 50px;
+    cursor: pointer;
+
   }
 }
