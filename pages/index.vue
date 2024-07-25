@@ -7,7 +7,7 @@ const userStore = useUserStore();
 
 onMounted(async() => {
   await userStore.getUserEvent();
-  if (userStore.userEvents) {
+  if (userStore.userEvents.length) {
     navigateTo('/dashboard');
   } else {
     navigateTo('/event/new');

@@ -17,4 +17,19 @@
     line-height: 29px;
     letter-spacing: -0.03em;
   }
+
+  &__delete {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    font-size: 27px;
+    line-height: normal;
+    border: none;
+    text-decoration: underline;
+    background-color: $color-transparent;
+    align-self: center;
+    cursor: pointer;
+  }
 }

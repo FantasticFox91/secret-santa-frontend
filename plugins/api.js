@@ -170,7 +170,7 @@ export default defineNuxtPlugin(() => {
         } catch (e) {
         }
         return result;
-      }
+      },
     },
     wishlist: {
       async addItems(items, eventId) {
@@ -214,6 +214,15 @@ export default defineNuxtPlugin(() => {
         }
         return result;
       },
+      async deleteEvent(eventId) {
+        let result = null;
+        try {
+          const res = await axi.delete(`/events/delete/${eventId}`);
+          result = res?.data;
+        } catch (e) {
+        }
+        return result;
+      }
     },
     setToken(token) {
       axi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
