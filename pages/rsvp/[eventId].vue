@@ -10,7 +10,8 @@ const eventId = computed(() => {
 
 onMounted(() => {
   userStore.user = {
-    'email': route.query.email
+    'email': route.query.email,
+    'eventId': route.path.split('/')[2],
   };
 })
 

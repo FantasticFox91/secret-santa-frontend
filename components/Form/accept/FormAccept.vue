@@ -20,9 +20,11 @@ const isButtonDisabled = computed(() => {
 
 const onSubmit = () => {
   formData.email = store.user.email;
+  formData.eventId = store.user.eventId;
   const data = new FormData();
   data.append('user', JSON.stringify({
     email: formData.email,
+    eventId: formData.eventId,
     password: formData.password,
   }));
   data.append('file', formData.avatar);
