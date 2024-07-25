@@ -41,18 +41,22 @@ const users = computed(() => {
 })
 
 onMounted(() => {
-  const today = new Date();
-  const eventDate = new Date(userEvent.value.date);
-  store.getPastEvents();
-
-  if (eventDate < today) {
-    eventStore.setCurrentEvent(store.userEvents[0]);
+  if (store.userEvents.length) {
+    const today = new Date();
+    const eventDate = new Date(userEvent.value.date);
+    store.getPastEvents();
+  
+    if (eventDate < today) {
+      eventStore.setCurrentEvent(store.userEvents[0]);
+    }
+  } else {
+    navigateTo('event/new')
   }
 })
 </script>
 
 <template>
-  <section class="invitation">
+  <section class="invitation" v-if="store.userEvents.length">
     <div class="invitation__headings">
       <div v-if="userEvent">
         <p class="invitation__date">{{ useDateUntil(userEvent.date) }}</p>

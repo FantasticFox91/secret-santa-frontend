@@ -19,7 +19,8 @@ export const useUserStore = defineStore('user', () => {
     const authStore = useAuthStore();
     const token = authStore.accessToken;
     const response = await $api.user.createGroup(data, token);
-    if (response.status.value === 'success') {
+    console.log(response)
+    if (response.status === 201) {
       navigateTo({path: '/dashboard'})
     }
   }
