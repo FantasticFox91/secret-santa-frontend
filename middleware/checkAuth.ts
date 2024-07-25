@@ -21,7 +21,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         userStore.user = { user: response };
         await userStore.getUserEvent();
         await userStore.getPastEvents();
-        await userStore.getUserWishlist();
+        if (userStore.userEvents.length) {
+          await userStore.getUserWishlist();
+        }
 
         authStore.isAuth = true;
       };

@@ -28,6 +28,10 @@ const onSubmit = () => {
   });
 }
 
+const onDeleteEventButtonClick = () => {
+  store.deleteEvent(form.id);
+}
+
 watch(userEvent, (newUserEvent) => {
   if (newUserEvent) {
     form.id = newUserEvent.id || '';
@@ -49,5 +53,9 @@ watch(userEvent, (newUserEvent) => {
     <DatePicker v-model="form.date"/>
     <FormCheckbox label="SEND OUT A REMINDER BEFORE EVENT" v-model="form.remind" id="reminder" name="reminder" />
     <MainButton type="submit">Update</MainButton>
+    <button class="form-edit__delete" type="button" @click="onDeleteEventButtonClick">
+      <svg-icon name="bin" width="32" height="32" />
+      Delete the Event
+    </button>
   </MyForm>
 </template>
